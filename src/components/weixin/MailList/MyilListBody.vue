@@ -2,16 +2,16 @@
   <div class="page-header">
     <div class="page">
       <div class="display-div div-div">
-        <div @click="opensss">
+        <div @click="opensss(img)">
           <img :src="img" alt class="img-header">
         </div>
         <div class="display-div div-span">
           <span class="font-w">
-            {{uname}}
             <!-- 姓名 -->
+            {{results.uname}}
           </span>
-          <span>微信号:</span>
-          <span>{{remarks}}</span>
+          <span>微信号:{{results.remarks}}</span>
+          <span>{{results.sex=="1"?"男":"女"}}</span>
         </div>
       </div>
       <div class="phonecls">
@@ -22,11 +22,11 @@
         <div class="region">
           <span class="font-w">地区:</span>
           <span>
-            {{region}}
+            {{results.region}}
             <!-- 地区 -->
           </span>
           <span>
-            {{area}}
+            {{results.area}}
             <!-- 具体地区 -->
           </span>
         </div>
@@ -39,68 +39,65 @@
           </div>
         </div>
         <div class="More">
-          <span class="font-w" @click="openssss">更多</span>
+          <span class="font-w" @click="openssss(results.source,results.title)">更多</span>
         </div>
       </div>
     </div>
     <div class="div-button">
-      <button class="large">发消息</button>
+      <button class="large" @click="sends">{{titlesend}}</button>
     </div>
-    <div>
-      <mt-popup v-model="popupVisible" class="img-img">
-        <img :src="img" alt class="img-img" @click="opensss">
-      </mt-popup>
-      <mt-popup v-model="popupVisibles" class="popup-div">
-        <backheader :back="openssss" :title="titlelist"></backheader>
-        <MyilListone :title="title" :source="source"></MyilListone>
-      </mt-popup>
-    </div>
+    <!-- <mt-popup v-model="popupVisible" class="img-img">
+      <img :src="results.img" alt class="img-img" @click="opensss">
+    </mt-popup>-->
+    <!-- <mt-popup v-model="popupVisibles" class="popup-div">
+      <backheader :back="openssss" :title="titlelist"></backheader>
+      <MyilListone :title="results.title" :source="results.source"></MyilListone>
+    </mt-popup>-->
   </div>
 </template>
 
 <script>
 import backheader from "../weixinhead/backheader.vue";
-import MyilListone from "./MyilListone.vue";
+
 export default {
   data() {
     return {
-      popupVisible: false,
-      popupVisibles: false,
-      titlelist: "微信"
+      results: "",
+      img: "",
+      list: []
     };
   },
   props: {
-    area: { default: "" },
-    img: { default: "" },
     lid: { default: "" },
-    region: { default: "" },
-    release_content_id: { default: "" },
-    remarks: { default: "" },
-    sex: { default: "" },
-    source: { default: "" },
-    title: { default: "" },
-    uname: { default: "" }
+    titlesend: { default: "" },
+    Judgement: { type: Function },
+    backi: { type: Function },
+    opensss: { type: Function },
+    openssss: { type: Function }
   },
   methods: {
-    opensss(e) {
-      if (this.popupVisible == false) {
-        this.popupVisible = true;
-      } else {
-        this.popupVisible = false;
-      }
+    sends(n) {
+      this.axios.get("sends", { params: { lid: this.lid } }).then(result => {
+        this.list = result;
+        this.backi();
+        this.Judgement();
+      });
     },
-    openssss(e) {
-      if (this.popupVisibles == false) {
-        this.popupVisibles = true;
-      } else {
-        this.popupVisibles = false;
-      }
-      e.stopPropagation();
+    chartonc() {
+      this.axios.get("chartone", { params: { lid: this.lid } }).then(result => {
+        this.results = result.data[0];
+        this.img = result.data[0].img;
+      });
     }
   },
   components: {
-    backheader,
-    MyilListone
+    backheader
+  },
+  created() {},
+  watch: {
+    lid() {
+      this.chartonc();
+    }
   }
 };
 </script>
@@ -203,6 +200,7 @@ export default {
   height: 50%;
 }
 .popup-div {
-  z-index: 1999;
+  width: 100%;
+  height: 100%;
 }
 </style>

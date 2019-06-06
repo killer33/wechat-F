@@ -2,7 +2,7 @@
   <div class="pagesss">
     <div>
       <span>来源:</span>
-      <span>{{source}}</span>
+      <span>{{source==null?"朋友圈":source}}</span>
     </div>
     <div>
       <span>个人签名:</span>
@@ -19,7 +19,8 @@ export default {
   props: {
     title: { default: "" },
     source: { default: "" }
-  }
+  },
+  methods: {}
 };
 </script>
 

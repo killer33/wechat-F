@@ -10,25 +10,30 @@
         <div>
           <ul>
             <li>
-              <div v-for="(p,i) of arr" :key="i" @click="open(i)" class="page-div">
+              <div v-for="(p,i) of arr" :key="i" @click="open(p.lid)" class="page-div">
                 <img :src="p.img" alt>
                 <span>{{p.uname}}</span>
-                <mt-popup class="mt-popups">
-                  <backheader :title="title" :back="back"></backheader>
-                  <MailListBody
-                    :area="p.area"
-                    :img="p.img"
-                    :lid="p.lid"
-                    :region="p.region"
-                    :release_content_id="p.release_content_id"
-                    :remarks="p.remarks"
-                    :sex="p.sex"
-                    :source="p.source"
-                    :title="p.title"
-                    :uname="p.uname"
-                  ></MailListBody>
-                </mt-popup>
               </div>
+              <mt-popup v-model="istrues">
+                <!-- 详细信息返回头 -->
+                <backheader :title="title" :back="open"></backheader>
+                <!-- 详细信息列表 -->
+                <MailListBody
+                  :titlesend="titlesend"
+                  :backi="open"
+                  :Judgement="Judgement"
+                  :lid="lid"
+                  :opensss="opensss"
+                  :openssss="openssss"
+                ></MailListBody>
+              </mt-popup>
+              <mt-popup v-model="popupVisible" class="img-img">
+                <img :src="p_img" @click="opensss" alt>
+              </mt-popup>
+              <mt-popup v-model="popupVisibles" class="popup-div">
+                <backheader :back="openssss" :title="titlelist"></backheader>
+                <MyilListone :title="one_title" :source="one_source"></MyilListone>
+              </mt-popup>
             </li>
           </ul>
         </div>
@@ -43,15 +48,25 @@
 import MailListHeader from "./MailListHeader";
 import backheader from "./weixinhead/backheader.vue";
 import MailListBody from "./MailList/MyilListBody.vue";
+import MyilListone from "./MailList/MyilListone";
 export default {
   data() {
     return {
+      one_title: "",
+      one_source: "",
       title: "详细信息",
       list: [],
-      arr: []
+      arr: [],
+      titlesend: "发消息",
+      istrues: false,
+      lid: "",
+      popupVisible: false,
+      p_img: "",
+      popupVisibles: false,
+      titlelist: "微信"
     };
   },
-  props: {},
+  props: { Judgement: { type: Function } },
   methods: {
     loadMore() {
       this.axios
@@ -69,18 +84,30 @@ export default {
         });
     },
     open(n) {
-      var all = document.querySelectorAll(".mt-popups");
-      for (var i of all) {
-        i.style.display = "none";
+      if (!this.istrues) {
+        this.istrues = true;
+        this.lid = n;
+      } else {
+        this.istrues = false;
       }
-      all[n].style.display = "block";
     },
-    back(e) {
-      var all = document.querySelectorAll(".mt-popups");
-      for (var i of all) {
-        i.style.display = "none";
+    opensss(n) {
+      if (this.popupVisible == false) {
+        this.popupVisible = true;
+        this.p_img = n;
+      } else {
+        this.popupVisible = false;
+        // document.querySelector(".v-modal").remove();
       }
-      e.stopPropagation();
+    },
+    openssss(n, i) {
+      if (!this.popupVisibles) {
+        this.popupVisibles = true;
+        this.one_title = i;
+        this.one_source = n;
+      } else {
+        this.popupVisibles = false;
+      }
     }
   },
   created() {
@@ -89,7 +116,8 @@ export default {
   components: {
     MailListHeader,
     backheader,
-    MailListBody
+    MailListBody,
+    MyilListone
   }
 };
 </script>
@@ -133,12 +161,15 @@ li img {
 .mint-popup {
   width: 100%;
   height: 100%;
-  position: fixed;
   background: #fff;
   top: 50%;
   left: 50%;
 }
 .disiplaynone {
   display: none;
+}
+.img-img img {
+  width: 100%;
+  height: 50%;
 }
 </style>

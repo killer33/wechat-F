@@ -8,10 +8,13 @@
       <!-- 切换面板 -->
       <mt-tab-container v-model="select">
         <mt-tab-container-item id="WeChat">
-          <message></message>
+          <button @click="wload"></button>
+          <!-- <Messagelist></Messagelist> -->
         </mt-tab-container-item>
+        <!-- 好友列表 -->
+
         <mt-tab-container-item id="MailList">
-          <MailList></MailList>
+          <MailList :Judgement="Judgement"></MailList>
         </mt-tab-container-item>
         <mt-tab-container-item id="find">
           <Tabfind></Tabfind>
@@ -45,13 +48,12 @@
 <script>
 import Tabbar from "./weixin/Tabbar.vue";
 import Tabheader from "./weixin/tabheader.vue";
+// import Messagelist from "./message/messagelist.vue";
 import Tabfind from "./weixin/TabFind.vue";
 import My from "./weixin/My.vue";
 // 列表插件1
 
 import MailList from "./weixin/MailList.vue";
-// 引入消息面板
-import message from "./message/messagelist";
 export default {
   data() {
     return {
@@ -87,7 +89,7 @@ export default {
         imgfalse: "http://172.242.19.42:3000/wechat/My.png",
         imgtrue: "http://172.242.19.42:3000/wechat/My_selected.png"
       },
-      lists: {}
+      lists: []
     };
   },
   components: {
@@ -95,38 +97,51 @@ export default {
     Tabheader,
     Tabfind,
     Myname: My,
-    MailList,
-    message,
+    MailList
+    // Messagelist
   },
   methods: {
     Judgement(e) {
-      var current = e.target.innerHTML;
-      //   当前点击tabbar内容进行判断
-      switch (current) {
-        case "微信":
-          for (var p of this.isImgTF) {
-            p.isselect = false;
-          }
-          this.isImgTF[0].isselect = true;
-          break;
-        case "通讯录":
-          for (var p of this.isImgTF) {
-            p.isselect = false;
-          }
-          this.isImgTF[1].isselect = true;
-          break;
-        case "发现":
-          for (var p of this.isImgTF) {
-            p.isselect = false;
-          }
-          this.isImgTF[2].isselect = true;
-          break;
-        default:
-          for (var p of this.isImgTF) {
-            p.isselect = false;
-          }
-          this.isImgTF[3].isselect = true;
-          break;
+      if (e != undefined) {
+        var current = e.target.innerHTML;
+        //   当前点击tabbar内容进行判断
+        switch (current) {
+          case "微信":
+            for (var p of this.isImgTF) {
+              p.isselect = false;
+            }
+            this.isImgTF[0].isselect = true;
+            break;
+          case "通讯录":
+            for (var p of this.isImgTF) {
+              p.isselect = false;
+            }
+            this.isImgTF[1].isselect = true;
+            break;
+          case "发现":
+            for (var p of this.isImgTF) {
+              p.isselect = false;
+            }
+            this.isImgTF[2].isselect = true;
+            break;
+          case "我":
+            for (var p of this.isImgTF) {
+              p.isselect = false;
+            }
+            this.isImgTF[3].isselect = true;
+            break;
+          default:
+            for (var p of this.isImgTF) {
+              p.isselect = false;
+            }
+            this.isImgTF[0].isselect = true;
+        }
+      } else {
+        for (var p of this.isImgTF) {
+          p.isselect = false;
+        }
+        this.isImgTF[0].isselect = true;
+        this.select = "WeChat";
       }
     },
     Mordload() {
@@ -134,12 +149,26 @@ export default {
         if (result.data.code == -1) {
           this.$toast(result.data.msg, 1000);
           this.$router.push({ path: "/login" });
+        } else {
+          // this.wload();
         }
       });
+    },
+    wload() {
+      this.axios.get("wload").then(result => {
+        for (var i = 0; i < result.data.length; i++) {
+          this.lists[i] = result.data[i][0];
+          console.log(result.data[i][0]);
+        }
+      });
+      for (var p of this.lists) {
+        console.log(p);
+      }
     }
   },
   created() {
     this.Mordload();
+    this.wload();
   }
 };
 </script>

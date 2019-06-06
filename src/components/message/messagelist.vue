@@ -36,6 +36,7 @@ export default {
             chatroom:false,
             chatUser:false,
             userid:"",
+            lists:[]
             
         }
     },
@@ -67,8 +68,24 @@ export default {
             }
             this.userid=id;
             console.log(id);
+        },
+        wload(){
+            this.axios.get("wload").then(result => {
+            for (var i = 0; i < result.data.length; i++) {
+            this.lists[i] = result.data[i][0];
+            }
+            });
+            for (var p of this.lists) {
+            console.log(p);
+            
+            }
+            console.log(111)
         }
 
+    },
+    created(){
+        // this.wload()
+    
     }
 }
 

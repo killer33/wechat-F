@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div style="height:50px;"></div>
+    <!-- <div style="height:50px;"></div> -->
     <!-- 钱包列表 -->
     <div class="money-list">
       <div class="sfk" @click="test()">
