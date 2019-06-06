@@ -168,7 +168,7 @@ export default {
   },
   created() {
     this.Mordload();
-    this.wload();
+    // this.wload();
   }
 };
 </script>

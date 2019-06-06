@@ -1,7 +1,7 @@
 <template>
     <div>
         <message class="item"
-            v-for="(item,index) in datas.data"
+            v-for="(item,index) in lists"
             :key="index"
             :id="item.id"
             :title="item.title"
@@ -18,6 +18,7 @@
         <mt-popup position="right" v-model="chatUser" class="chat">
             <chatUser :cUser="cUser"></chatUser>
         </mt-popup>
+ 
     </div> 
 </template>
 <script>
@@ -26,13 +27,13 @@ import message from "./message"
 //聊天室子组件
 import chatroom from "./chat/chat"
 //引入模拟数据库的json文件
-import json from "../json/message.json"
+// import json from "../json/message.json"
 // 聊天信息子组件
 import chatUser from "./chat/chat-user"
 export default {
     data(){
         return{
-            datas:json,
+            // datas:json,
             chatroom:false,
             chatUser:false,
             userid:"",
@@ -71,20 +72,21 @@ export default {
         },
         wload(){
             this.axios.get("wload").then(result => {
-            for (var i = 0; i < result.data.length; i++) {
-            this.lists[i] = result.data[i][0];
-            }
-            });
+                console.log(result);
+             for (var i = 0; i < result.data.length; i++) {
+                this.lists[i] = result.data[i][0];
+             }
+             });
             for (var p of this.lists) {
-            console.log(p);
+                console.log(p);
             
-            }
+             }
             console.log(111)
         }
 
     },
     created(){
-        // this.wload()
+         this.wload();
     
     }
 }
