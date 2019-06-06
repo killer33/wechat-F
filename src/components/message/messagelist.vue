@@ -12,7 +12,7 @@
             :clickroom="clickroom"
         ></message>
         <mt-popup position="right" v-model="chatroom" class="chat">
-            <chatroom :clickroom="clickroom"></chatroom> 
+            <chatroom :clickroom="clickroom" :userid="userid"></chatroom> 
         </mt-popup>
     </div> 
 </template>
@@ -28,6 +28,7 @@ export default {
         return{
             datas:json,
             chatroom:false,
+            userid:"",
         }
     },
     components:{
@@ -35,14 +36,15 @@ export default {
         "chatroom":chatroom
     },
     methods:{
-        clickroom(a){
+        clickroom(id){
             if(!this.chatroom){
                 this.chatroom=true;    
             }else{
                 this.chatroom=false;  
             }
             // document.getElementsByClassName("mint-popup")[0].style("transition","1s");
-            // console.log(a);
+            // console.log(id);
+            this.userid=id;
         },
 
     }

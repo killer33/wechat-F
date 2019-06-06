@@ -2,29 +2,29 @@
     <div class="chatroom">
         <div class="back">
             <span class="leftback">
-                <img src="back.png" alt="" @click="clickroom('this')">
-                <p>朋友名字</p>
+                <img src="back.png" alt="" @click="clickroom(),clear()">
+                <p>朋友名字{{userid}}</p>
             </span>
             
-            <span class="rightuser">
+            <span class="rightuser" @click="cUser">
                 <img src="F_user.png" alt="">
             </span>
         </div>
         <div class="content">
-            <div class="content-wapper">
+            <div class="content-wapper" id="scrolldiv">
                 <div class="content-top">
                     <p>————现在可以和我聊天了————</p>
                 </div>
                 <div class="content-body">
-                    <ul v-for="(item,index) in Arr" :key="index">
-                        <li class="ask" :id="index">
-                            <img src="a_7.png" alt="">
-                            <p>{{item}}</p>
+                    <ul v-for="(item,index) in Content" :key="index">
+                        <li class="ask" :id="index" v-show="item.askContent">
+                            <img :src="item.askImg" alt="">
+                            <p>{{item.askContent}}</p>
                         </li>
-                        <!-- <li class="reply" style="display:none">
-                            <img src="" alt="">
-                            <p></p>
-                        </li> -->
+                        <li class="reply"  v-show="item.replyContent">
+                            <img :src="item.replyImg" alt="">
+                            <p>{{item.replyContent}}</p>
+                        </li>
                     </ul>   
                 </div>
             </div>
@@ -35,36 +35,101 @@
                 <mt-button size="normal" class="sendbutton" @click="addContent">发送</mt-button>
             </div>
         </div>
+        <mt-popup position="right" v-model="chatUser" class="chat">
+            <chatUser :cUser="cUser"></chatUser>
+        </mt-popup>
     </div>
 </template>
 <script>
+    import chatUser from "./chat-user"
 export default {
+
     data(){
         return{        
             chatContent:"",
-            Arr:[],
+            Content:[],
             display:"display:none",
+            randomReply:[
+                "你好!",
+                "好的",
+                "OK",
+                "没问题",
+                "就这样",
+                "再见",
+                "早上好",
+                "晚上好",
+                "中午好",
+            ],
+            neirong1:"",
+            chatUser:false,
+
         }
     },
     methods:{
         addContent(){
             if(!this.chatContent==""){
-                this.Arr.push(this.chatContent);
+                this.Content.push({
+                    askImg:'a_7.png',
+                    askContent: this.chatContent
+                }),
                 this.chatContent="";
+                setTimeout(() => {
+                    this.Content.push({
+                        replyImg: 'a_7.png',
+                        replyContent: this.randomReply[Math.floor(Math.random() *9)]
+                        //自动回复代码this.randomReply[Math.floor(Math.random() * 19)]
+                        })
+
+                }, 1000)
 
             }
-            var id=this.Arr.length;
-            console.log(id-1);
-            var change=document.getElementById(id-1);
-            console.log(change);
-            // change.className="reply";
+
             
         },
+        clear(){
+            this.Content=[];
+        },
+        scroll(){
+                var now = new Date();
+                var div = document.getElementById('scrolldiv');
+                div.scrollTop = div.scrollHeight+50;
+                setTimeout(()=>{
+                    div.scrollTop+=55;
+                },1)
+                        
+        },
+        cUser(){
+            if(!this.chatUser){
+                this.clickroom();
+                this.chatUser=true;
+                
+            }else{
+                this.clickroom();
+                this.chatUser=false;
+                
+            }
+        }
         
     },
     props:{
         clickroom:{type:Function},
+        userid:{default:""},
+    },
+    watch:{
+        // chatContent() {
+        //     this.scroll();
+        //     console.log("1231213")
+        // },
+        Content(){
+           this.scroll();
+           
+        }
+    },
+    components:{
+        "chatUser":chatUser
     }
+
+    
 }
 </script>
 <style>
@@ -97,6 +162,7 @@ export default {
         margin-left:15px;
         padding-left: 10px;
         border-left: 1px solid #000;
+        margin-bottom:0; 
     }
     .rightuser img{
         margin-right:15px; 
@@ -129,6 +195,7 @@ export default {
     .content-body ul{
         list-style: none;
         display: block;
+        padding: 0;
     }
     /* 发送消息样式 */
     ul li.ask{
@@ -156,12 +223,14 @@ export default {
         line-height: 30px;
         padding: 3px 10px;
         max-width: 190px;
-        background-color: #09bb07;
-        color: #fff;
+        
+        
         border-radius:3px; 
     }
     li.ask>p{
         float:right;
+        background-color: #09bb07;
+        color: #fff;
     }
     /* 回复消息样式 */
     ul li.reply{
@@ -175,6 +244,8 @@ export default {
     }
     li.reply>p{
         float: left;
+        background-color:#fff; 
+        color: #000;
     }
 
     /* 底部样式 */
@@ -189,15 +260,16 @@ export default {
         height: 50px;
     }
     .send input{
-        height: 30px;
-        width: 70%;
-        border: none;
-        margin: 10px;
-        font-size: 15px;
-        border-bottom: 1px solid #adadad;
-        padding-left: 8px;
+        height: 30px !important;
+        width: 70% !important;
+        border: none !important;
+        margin: 10px !important;
+        font-size: 15px !important;
+        border-bottom: 1px solid #adadad !important;
+        padding-left: 8px !important;
     }
     .send button{
+        margin-top:10px ;
         background-color: #09bb07;
         color: white;
         height: 28px;
