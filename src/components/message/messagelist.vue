@@ -10,9 +10,13 @@
             :imgurl="item.img"
             :time="item.time"
             :clickroom="clickroom"
+            :cUser="cUser"
         ></message>
         <mt-popup position="right" v-model="chatroom" class="chat">
-            <chatroom :clickroom="clickroom" :userid="userid"></chatroom> 
+            <chatroom :clickroom="clickroom" :userid="userid" :cUser="cUser"></chatroom> 
+        </mt-popup>
+        <mt-popup position="right" v-model="chatUser" class="chat">
+            <chatUser :cUser="cUser"></chatUser>
         </mt-popup>
     </div> 
 </template>
@@ -23,17 +27,22 @@ import message from "./message"
 import chatroom from "./chat/chat"
 //引入模拟数据库的json文件
 import json from "../json/message.json"
+// 聊天信息子组件
+import chatUser from "./chat/chat-user"
 export default {
     data(){
         return{
             datas:json,
             chatroom:false,
+            chatUser:false,
             userid:"",
+            
         }
     },
     components:{
         "message":message,
-        "chatroom":chatroom
+        "chatroom":chatroom,
+        "chatUser":chatUser,
     },
     methods:{
         clickroom(id){
@@ -46,6 +55,19 @@ export default {
             // console.log(id);
             this.userid=id;
         },
+        cUser(id){
+            if(!this.chatUser){
+                // this.clickroom();
+                this.chatUser=true;
+                
+            }else{
+                // this.clickroom();
+                this.chatUser=false;
+                
+            }
+            this.userid=id;
+            console.log(id);
+        }
 
     }
 }

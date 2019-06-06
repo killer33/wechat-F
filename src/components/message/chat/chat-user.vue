@@ -2,7 +2,7 @@
     <div class="chat-user">
         <div class="back">
             <span class="leftback">
-                <img src="back.png" alt="" @click="cUser">
+                <img src="back.png" alt="" @click="cUser()">
                 <p>聊天信息</p>
             </span>
         </div>
@@ -47,6 +47,7 @@ export default {
         bottom: 0;
         width: 100%;
         background-color: #ebebeb;
+        z-index: 300;
         
     }
     .content{

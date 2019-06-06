@@ -6,7 +6,7 @@
                 <p>朋友名字{{userid}}</p>
             </span>
             
-            <span class="rightuser" @click="cUser">
+            <span class="rightuser" @click="cUser(userid)">
                 <img src="F_user.png" alt="">
             </span>
         </div>
@@ -35,9 +35,9 @@
                 <mt-button size="normal" class="sendbutton" @click="addContent">发送</mt-button>
             </div>
         </div>
-        <mt-popup position="right" v-model="chatUser" class="chat">
+        <!-- <mt-popup position="right" v-model="chatUser" class="chat">
             <chatUser :cUser="cUser"></chatUser>
-        </mt-popup>
+        </mt-popup> -->
     </div>
 </template>
 <script>
@@ -98,22 +98,23 @@ export default {
                 },1)
                         
         },
-        cUser(){
-            if(!this.chatUser){
-                this.clickroom();
-                this.chatUser=true;
+        // cUser(){
+        //     if(!this.chatUser){
+        //         // this.clickroom();
+        //         this.chatUser=true;
                 
-            }else{
-                this.clickroom();
-                this.chatUser=false;
+        //     }else{
+        //         // this.clickroom();
+        //         this.chatUser=false;
                 
-            }
-        }
+        //     }
+        // }
         
     },
     props:{
         clickroom:{type:Function},
         userid:{default:""},
+        cUser:{type:Function},
     },
     watch:{
         // chatContent() {
