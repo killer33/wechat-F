@@ -53,6 +53,7 @@ import My from "./weixin/My.vue";
 // 列表插件1
 
 import MailList from "./weixin/MailList.vue";
+import { type } from "os";
 export default {
   data() {
     return {
@@ -164,12 +165,11 @@ export default {
           this.$toast(result.data.msg, 2000);
         }
       });
-      console.log(this.lists);
+      console.log(this.lists, typeof this.lists);
     }
   },
   created() {
     this.Mordload();
-    
   }
 };
 </script>

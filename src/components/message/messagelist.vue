@@ -4,20 +4,25 @@
       class="item"
       v-for="(item,index) in lists"
       :key="index"
-      :id="item.id"
-      :title="item.title"
-      :subtitle="item.subtitle"
-      :sendtime="item.sendtime"
+      :lid="item.lid"
+      :area="item.area"
+      :common="item.common"
       :imgurl="item.img"
-      :time="item.time"
+      :region="item.region"
+      :remarks="item.remarks"
+      :sex="item.sex"
+      :time="item.source"
+      :title="item.title"
+      :uname="item.uname"
+      :source="item.source"
       :clickroom="clickroom"
       :cUser="cUser"
     ></message>
     <mt-popup position="right" v-model="chatroom" class="chat">
-      <chatroom :clickroom="clickroom" :userid="userid" :cUser="cUser"></chatroom>
+      <chatroom :clickroom="clickroom" :userid="userid" :uname="uname" :cUser="cUser"></chatroom>
     </mt-popup>
     <mt-popup position="right" v-model="chatUser" class="chat">
-      <chatUser :cUser="cUser"></chatUser>
+      <chatUser :cUser="cUser" :uname="uname" :img="imgurl"></chatUser>
     </mt-popup>
   </div>
 </template>
@@ -31,13 +36,15 @@ import chatroom from "./chat/chat";
 // 聊天信息子组件
 import chatUser from "./chat/chat-user";
 export default {
+  props: { lists: { default: () => [] } },
   data() {
     return {
       // datas:json,
       chatroom: false,
       chatUser: false,
       userid: "",
-      lists: []
+      uname: "",
+      imgurl: ""
     };
   },
   components: {
@@ -46,29 +53,28 @@ export default {
     chatUser: chatUser
   },
   methods: {
-    clickroom(id) {
+    clickroom(id, name, img) {
       if (!this.chatroom) {
         this.chatroom = true;
+        this.userid = id;
+        this.uname = name;
+        this.imgurl = img;
       } else {
         this.chatroom = false;
       }
       // document.getElementsByClassName("mint-popup")[0].style("transition","1s");
-      // console.log(id);
-      this.userid = id;
     },
-    cUser(id) {
+    cUser() {
       if (!this.chatUser) {
         // this.clickroom();
         this.chatUser = true;
+        // this.userid = id;
       } else {
         // this.clickroom();
         this.chatUser = false;
       }
-      this.userid = id;
-      console.log(id);
     }
-  },
-  created() {}
+  }
 };
 </script>
 <style>
