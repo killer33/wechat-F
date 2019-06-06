@@ -8,8 +8,7 @@
       <!-- 切换面板 -->
       <mt-tab-container v-model="select">
         <mt-tab-container-item id="WeChat">
-          <button @click="wload"></button>
-          <!-- <Messagelist></Messagelist> -->
+          <Messagelist :lists="lists"></Messagelist>
         </mt-tab-container-item>
         <!-- 好友列表 -->
 
@@ -48,7 +47,7 @@
 <script>
 import Tabbar from "./weixin/Tabbar.vue";
 import Tabheader from "./weixin/tabheader.vue";
-// import Messagelist from "./message/messagelist.vue";
+import Messagelist from "./message/messagelist";
 import Tabfind from "./weixin/TabFind.vue";
 import My from "./weixin/My.vue";
 // 列表插件1
@@ -97,8 +96,8 @@ export default {
     Tabheader,
     Tabfind,
     Myname: My,
-    MailList
-    // Messagelist
+    MailList,
+    Messagelist
   },
   methods: {
     Judgement(e) {
@@ -150,25 +149,27 @@ export default {
           this.$toast(result.data.msg, 1000);
           this.$router.push({ path: "/login" });
         } else {
-          // this.wload();
+          this.wload();
         }
       });
     },
     wload() {
       this.axios.get("wload").then(result => {
-        for (var i = 0; i < result.data.length; i++) {
-          this.lists[i] = result.data[i][0];
-          console.log(result.data[i][0]);
+        if (result.data.code == 1) {
+          for (var i = 0; i < result.data.data.length; i++) {
+            this.lists[i] = result.data.data[i][0];
+            console.log(result.data.data[i][0]);
+          }
+        } else {
+          this.$toast(result.data.msg, 2000);
         }
       });
-      for (var p of this.lists) {
-        console.log(p);
-      }
+      console.log(this.lists);
     }
   },
   created() {
     this.Mordload();
-    // this.wload();
+    
   }
 };
 </script>

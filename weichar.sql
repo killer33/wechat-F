@@ -21,7 +21,7 @@ phone INT,
 #qq邮箱
 email varchar(32),
 #注册时间
-data_time varchar(32),
+data_time varchar(64),
 #密保问题1 也要加密md5()
 protection varchar(64),
 #密保答案1 也要加密md5()
@@ -44,15 +44,25 @@ CREATE TABLE wx_login_chat(
 #id自增 添加好友成功后会自动向当前表发送 对方的id
 lc_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 #获取到id 进行遍历 再去查找 列表查找符合的用户
-login_char varchar(15000)
+login_char varchar(1500),
+istruechat varchar(6500),
+istruenews varchar(6500),
+issearch varchar(6500)
 );
-insert into wx_login_chat(lc_id,login_char) values
-(null,'1,2,3,4,5,6'),
-(null,'1,3,4,6'),
-(null,'2,3,4,5,6'),
-(null,'1,3,4,5,6'),
-(null,'2,3,4,6'),
-(null,'3,4,5,6');
+insert into wx_login_chat(lc_id,login_char,istruechat,istruenews,issearch) values
+(null,'1,2,3,4,5,6','false,false,false,false
+,false,false','true,true,true,true,true,true'
+,'true,true,true,true,true,true'),
+(null,'1,3,4,6','false,false,false,false'
+,'true,true,true,true','true,true,true,true'),
+(null,'2,3,4,5,6','false,false,false,false,false'
+,'true,true,true,true,true','true,true,true,true,true'),
+(null,'1,3,4,5,6','false,false,false,false,false'
+,'true,true,true,true,true','true,true,true,true,true'),
+(null,'2,3,4,6','false,false,false,false'
+,'true,true,true,true','true,true,true,true'),
+(null,'3,4,5,6','false,false,false,false'
+,'true,true,true,true','true,true,true,true');
 
 #是否在聊天列表框里如果在就添加 不在就移除 表
 #根据wx_login_chat表id
