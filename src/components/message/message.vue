@@ -1,42 +1,48 @@
 <template>
-  <div class="mess" @click="clickroom(lid,uname,imgurl)">
-    <div class="leftmess">
-      <!-- 头像 -->
-      <img class="leftImg" :src="imgurl" alt>
-      <div class="rightName">
-        <!-- 姓名 -->
-        <span class="F_name">{{uname}}</span>
-        <!-- 最晚那条内容 -->
-        <span class="subtitle">{{subtitle}}</span>
+  <div>
+    <div class="mess" @click="clickroom(lid,uname,img)">
+      <div class="leftmess">
+        <!-- 头像 -->
+        <img class="leftImg" :src="img" alt>
+        <div class="rightName">
+          <!-- 姓名 -->
+          <span class="F_name">{{uname}}</span>
+          <!-- 最后一条聊天内容-->
+          <span class="subtitle">2424</span>
+        </div>
       </div>
+      <!-- 时间 -->
+      <span class="sendtime">
+        <mydatatime :mydatetime="mydata"></mydatatime>
+      </span>
     </div>
-    <!-- 时间 -->
-    <span class="sendtime">21:10</span>
   </div>
 </template>
 <script>
+import mydatatime from "../weixin/datetime/date";
 export default {
   data() {
     return {
-      subtitle: "您还没与对方聊过天"
+      mydata: "1559906681702"
     };
   },
   // 接收父元素数据
   props: {
+    lid: { default: "" },
     area: { default: "" },
     common: { default: "" },
-    imgurl: { default: "" },
-    lid: { default: "" },
+    img: { default: "" },
     region: { default: "" },
     remarks: { default: "" },
     sex: { default: "" },
-    title: { type: String, default: "" },
     source: { default: "" },
+    title: { default: "" },
     uname: { default: "" },
     clickroom: { type: Function }
   },
-  created() {},
-  methods: {}
+  components: {
+    mydatatime
+  }
 };
 </script>
 <style>

@@ -2,27 +2,25 @@
   <div>
     <message
       class="item"
-      v-for="(item,index) in lists"
-      :key="index"
-      :lid="item.lid"
-      :area="item.area"
-      :common="item.common"
-      :imgurl="item.img"
-      :region="item.region"
-      :remarks="item.remarks"
-      :sex="item.sex"
-      :time="item.source"
-      :title="item.title"
-      :uname="item.uname"
-      :source="item.source"
+      :lid="lid"
+      :area="area"
+      :common="common"
+      :img="img"
+      :region="region"
+      :remarks="remarks"
+      :sex="sex"
+      :source="source"
+      :title="title"
+      :uname="uname"
       :clickroom="clickroom"
       :cUser="cUser"
     ></message>
+
     <mt-popup position="right" v-model="chatroom" class="chat">
-      <chatroom :clickroom="clickroom" :userid="userid" :uname="uname" :cUser="cUser"></chatroom>
+      <chatroom :clickroom="clickroom" :lid="lids" :uname="unames" :cUser="cUser" :img="img"></chatroom>
     </mt-popup>
     <mt-popup position="right" v-model="chatUser" class="chat">
-      <chatUser :cUser="cUser" :uname="uname" :img="imgurl"></chatUser>
+      <chatUser :cUser="cUser" :uname="unames" :img="img"></chatUser>
     </mt-popup>
   </div>
 </template>
@@ -36,14 +34,25 @@ import chatroom from "./chat/chat";
 // 聊天信息子组件
 import chatUser from "./chat/chat-user";
 export default {
-  props: { lists: { default: () => [] } },
+  props: {
+    lid: { default: "" },
+    area: { default: "" },
+    common: { default: "" },
+    img: { default: "" },
+    region: { default: "" },
+    remarks: { default: "" },
+    sex: { default: "" },
+    source: { default: "" },
+    title: { default: "" },
+    uname: { default: "" }
+  },
   data() {
     return {
       // datas:json,
       chatroom: false,
       chatUser: false,
-      userid: "",
-      uname: "",
+      lids: "",
+      unames: "",
       imgurl: ""
     };
   },
@@ -56,8 +65,8 @@ export default {
     clickroom(id, name, img) {
       if (!this.chatroom) {
         this.chatroom = true;
-        this.userid = id;
-        this.uname = name;
+        this.lids = id;
+        this.unames = name;
         this.imgurl = img;
       } else {
         this.chatroom = false;
@@ -74,7 +83,9 @@ export default {
         this.chatUser = false;
       }
     }
-  }
+  },
+  watch: {},
+  created() {}
 };
 </script>
 <style>

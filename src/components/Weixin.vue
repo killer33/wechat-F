@@ -6,9 +6,22 @@
     </div>
     <div>
       <!-- 切换面板 -->
-      <mt-tab-container v-model="select">
+      <mt-tab-container v-model="selected">
         <mt-tab-container-item id="WeChat">
-          <Messagelist :lists="lists"></Messagelist>
+          <Messagelist
+            v-for="(item,index) of list"
+            :key="index"
+            :lid="item.lid"
+            :area="item.area"
+            :common="item.common"
+            :img="item.img"
+            :region="item.region"
+            :remarks="item.remarks"
+            :sex="item.sex"
+            :source="item.source"
+            :title="item.title"
+            :uname="item.uname"
+          ></Messagelist>
         </mt-tab-container-item>
         <!-- 好友列表 -->
 
@@ -26,7 +39,7 @@
     <!-- 底部导航栏tabbar -->
     <div>
       <!-- fixed固定在底部 -->
-      <mt-tabbar fixed v-model="select" @click.native="Judgement">
+      <mt-tabbar fixed v-model="selected" @click.native="Judgement">
         <mt-tab-item id="WeChat">
           <Tabbar :WeChat="Wechat" :isIMG="isImgTF[0].isselect"></Tabbar>
         </mt-tab-item>
@@ -53,11 +66,10 @@ import My from "./weixin/My.vue";
 // 列表插件1
 
 import MailList from "./weixin/MailList.vue";
-import { type } from "os";
 export default {
   data() {
     return {
-      select: "WeChat",
+      selected: "WeChat",
       TabHeader: {
         title: "微信",
         Imgsearch: "http://172.242.19.42:3000/wechat/search.png",
@@ -89,7 +101,7 @@ export default {
         imgfalse: "http://172.242.19.42:3000/wechat/My.png",
         imgtrue: "http://172.242.19.42:3000/wechat/My_selected.png"
       },
-      lists: []
+      list: []
     };
   },
   components: {
@@ -137,11 +149,7 @@ export default {
             this.isImgTF[0].isselect = true;
         }
       } else {
-        for (var p of this.isImgTF) {
-          p.isselect = false;
-        }
-        this.isImgTF[0].isselect = true;
-        this.select = "WeChat";
+        this.Juindex();
       }
     },
     Mordload() {
@@ -158,19 +166,26 @@ export default {
       this.axios.get("wload").then(result => {
         if (result.data.code == 1) {
           for (var i = 0; i < result.data.data.length; i++) {
-            this.lists[i] = result.data.data[i][0];
-            console.log(result.data.data[i][0]);
+            this.list[i] = result.data.data[i][0];
           }
         } else {
           this.$toast(result.data.msg, 2000);
         }
+        this.Juindex();
       });
-      console.log(this.lists, typeof this.lists);
+    },
+    Juindex() {
+      for (var p of this.isImgTF) {
+        p.isselect = false;
+      }
+      this.isImgTF[0].isselect = true;
+      this.selected = "WeChat";
     }
   },
   created() {
     this.Mordload();
-  }
+  },
+  watch: {}
 };
 </script>
 <style scoped>

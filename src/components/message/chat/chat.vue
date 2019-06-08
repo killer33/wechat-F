@@ -6,7 +6,7 @@
         <p>{{uname}}</p>
       </span>
 
-      <span class="rightuser" @click="cUser(userid,uname)">
+      <span class="rightuser" @click="cUser(lid,uname)">
         <img src="http://172.242.19.42:3000/wechat/backMyilList.png" alt>
       </span>
     </div>
@@ -18,11 +18,11 @@
         <div class="content-body">
           <ul v-for="(item,index) in Content" :key="index">
             <li class="ask" :id="index" v-show="item.askContent">
-              <img :src="item.askImg" alt>
+              <img :src="item.replyImg" alt>
               <p>{{item.askContent}}</p>
             </li>
             <li class="reply" v-show="item.replyContent">
-              <img :src="item.replyImg" alt>
+              <img :src="img" alt>
               <p>{{item.replyContent}}</p>
             </li>
           </ul>
@@ -91,29 +91,16 @@ export default {
         div.scrollTop += 55;
       }, 1);
     }
-    // cUser(){
-    //     if(!this.chatUser){
-    //         // this.clickroom();
-    //         this.chatUser=true;
-
-    //     }else{
-    //         // this.clickroom();
-    //         this.chatUser=false;
-
-    //     }
-    // }
   },
   props: {
     clickroom: { type: Function },
-    userid: { default: "" },
+    lid: { default: "" },
     cUser: { type: Function },
-    uname: { default: "" }
+    uname: { default: "" },
+    img: { default: "" }
   },
   watch: {
-    // chatContent() {
-    //     this.scroll();
-    //     console.log("1231213")
-    // },
+    $route: "getParams",
     Content() {
       this.scroll();
     }
