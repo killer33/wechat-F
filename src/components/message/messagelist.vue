@@ -14,6 +14,8 @@
       :uname="uname"
       :clickroom="clickroom"
       :cUser="cUser"
+      :detailstime="detailstime"
+      :detailsneirong="detailsneirong"
     ></message>
 
     <mt-popup position="right" v-model="chatroom" class="chat">
@@ -44,7 +46,9 @@ export default {
     sex: { default: "" },
     source: { default: "" },
     title: { default: "" },
-    uname: { default: "" }
+    uname: { default: "" },
+    detailstime: { default: "" },
+    detailsneirong: { default: "" }
   },
   data() {
     return {
@@ -84,8 +88,7 @@ export default {
       }
     }
   },
-  watch: {},
-  created() {}
+  watch: {}
 };
 </script>
 <style>

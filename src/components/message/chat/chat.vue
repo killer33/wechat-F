@@ -60,7 +60,9 @@ export default {
         "中午好"
       ],
       neirong1: "",
-      chatUser: false
+      chatUser: false,
+      details: [],
+      thisdetails: []
     };
   },
   methods: {
@@ -90,6 +92,34 @@ export default {
       setTimeout(() => {
         div.scrollTop += 55;
       }, 1);
+    },
+    senddetails() {
+      this.axios.get("details", { params: { lid: this.lid } }).then(result => {
+        var result = result.data.data;
+        var arr = [];
+        for (var p of result[0].wx_details.split(",")) {
+          arr.push(p.split(" "));
+        }
+        for (var i = 0, ii = 0; i < arr.length; i++) {
+          var reg = arr[i][0].search(this.lid);
+          if (arr[i][0].search(this.lid) == "1") {
+            this.details[ii] = arr[i]
+              .join(",")
+              .split(",")[1]
+              .replace(/\[/g, "")
+              .replace(/\]/g, "");
+            ii++;
+          } else {
+            this.thisdetails = arr[i]
+              .join(",")
+              .split(",")[1]
+              .replace(/\[/g, "")
+              .replace(/\]/g, "");
+          }
+        }
+        // console.log(this.details);
+        // console.log(this.thisdetails);
+      });
     }
   },
   props: {
@@ -100,9 +130,11 @@ export default {
     img: { default: "" }
   },
   watch: {
-    $route: "getParams",
     Content() {
       this.scroll();
+    },
+    lid() {
+      this.senddetails();
     }
   },
   components: {

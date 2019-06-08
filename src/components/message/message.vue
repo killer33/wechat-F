@@ -8,12 +8,12 @@
           <!-- 姓名 -->
           <span class="F_name">{{uname}}</span>
           <!-- 最后一条聊天内容-->
-          <span class="subtitle">2424</span>
+          <span class="subtitle">{{detailsneirong}}</span>
         </div>
       </div>
       <!-- 时间 -->
       <span class="sendtime">
-        <mydatatime :mydatetime="mydata"></mydatatime>
+        <mydatatime :mydatetime="detailstime"></mydatatime>
       </span>
     </div>
   </div>
@@ -23,7 +23,9 @@ import mydatatime from "../weixin/datetime/date";
 export default {
   data() {
     return {
-      mydata: "1559906681702"
+      // mydata: "1559906681702",
+      details: [],
+      thisdetails: []
     };
   },
   // 接收父元素数据
@@ -38,11 +40,14 @@ export default {
     source: { default: "" },
     title: { default: "" },
     uname: { default: "" },
-    clickroom: { type: Function }
+    clickroom: { type: Function },
+    detailstime: { default: "" },
+    detailsneirong: { default: "" }
   },
   components: {
     mydatatime
-  }
+  },
+  methods: {}
 };
 </script>
 <style>

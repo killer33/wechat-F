@@ -21,6 +21,8 @@
             :source="item.source"
             :title="item.title"
             :uname="item.uname"
+            :detailstime="lists[index]"
+            :detailsneirong="lists1[index]"
           ></Messagelist>
         </mt-tab-container-item>
         <!-- 好友列表 -->
@@ -101,7 +103,9 @@ export default {
         imgfalse: "http://172.242.19.42:3000/wechat/My.png",
         imgtrue: "http://172.242.19.42:3000/wechat/My_selected.png"
       },
-      list: []
+      list: [],
+      lists: [],
+      lists1: []
     };
   },
   components: {
@@ -180,10 +184,32 @@ export default {
       }
       this.isImgTF[0].isselect = true;
       this.selected = "WeChat";
+    },
+    detailstime() {
+      this.axios.get("detailstime").then(result => {
+        var result = result.data;
+        var arr = [],
+          arr1 = [];
+        for (var i = 0; i < result.data.length; i++) {
+          if (result.data[i][0].wx_details_time != undefined) {
+            arr.push(result.data[i][0].wx_details_time.split(",")[1]);
+          }
+          var err = result.data[i][0].wx_details.split(",");
+          arr1.push(
+            err[err.length - 1]
+              .split(" ")[1]
+              .replace(/\[/, "")
+              .replace(/\]/, "")
+          );
+        }
+        this.lists = arr;
+        this.lists1 = arr1;
+      });
     }
   },
   created() {
     this.Mordload();
+    this.detailstime();
   },
   watch: {}
 };
