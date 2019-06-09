@@ -21,7 +21,9 @@
         <!-- 内容 -->
         <span class="span-width">{{p[0].wx_release_content_details}}</span>
         <!-- 时间 -->
-        <span style="font-size:13px">{{p[0].wx_release_content_data_time}}</span>
+        <span style="font-size:13px">
+          <mydatatime :mydatetime="p[0].wx_release_content_data_time"></mydatatime>
+        </span>
       </div>
       <div class="for-div-span">
         <img
@@ -37,6 +39,7 @@
 </template>
 
 <script>
+import mydatatime from "../datetime/date";
 import { setTimeout } from "timers";
 export default {
   data() {
@@ -80,6 +83,9 @@ export default {
     add() {
       console.log(this.myarr);
     }
+  },
+  components: {
+    mydatatime
   }
 };
 </script>
@@ -87,7 +93,7 @@ export default {
 <style scoped>
 .divwidth {
   width: 100%;
-  height: 100%;
+  height: 90%;
   overflow-y: auto;
 }
 /* 最外层div背景图 */
