@@ -38,9 +38,21 @@ export default {
       this.axios
         .get("login", { params: { uname: this.uname, upass: this.upass } })
         .then(result => {
+          var results = result.data.data[0];
+          var results1 = results.img;
+          var results2 = results.phone;
+          var results3 = results.uid;
+          var results4 = results.uname;
+          var resultss = { results1, results2, results3, results4 };
           this.$toast(result.data.msg, 1000);
           if (result.data.msg == "登录成功") {
-            this.$router.push({ path: "/" });
+            this.$router.push({
+              path: "/weixin",
+              name: "weixin",
+              params: {
+                loginresult: { resultss }
+              }
+            });
           } else {
             this.uname = "";
             this.upass = "";

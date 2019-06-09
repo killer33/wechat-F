@@ -79,6 +79,7 @@ export default {
     sends(n) {
       this.axios.get("sends", { params: { lid: this.lid } }).then(result => {
         this.list = result;
+        window.location.href = document.referrer;
         this.backi();
         this.Judgement();
       });

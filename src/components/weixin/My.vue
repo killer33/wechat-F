@@ -2,10 +2,13 @@
   <div class="container">
     <div class="my-info">
       <div class="left-info">
-        <img src="http://172.242.19.42:3000/wechat/tabfind4.png" alt="头像" class="left-img">
+        <!-- 头像 -->
+        <img :src="loginresult.results1" alt="头像" class="left-img">
         <div class="info-name" @click="open(1)">
+          <!-- name名 -->
           <h3>minion</h3>
-          <span>微信号：DespicableMe</span>
+          <!-- 微信号 -->
+          <span>微信号:{{loginresult.results4}}</span>
         </div>
       </div>
       <div class="right-img">
@@ -117,6 +120,9 @@ export default {
         p.popupVisible = false;
       }
     }
+  },
+  props: {
+    loginresult: { default: "" }
   }
 };
 </script>
@@ -183,7 +189,7 @@ export default {
 .mint-popup {
   width: 100%;
   height: 100%;
-  overflow:auto;
+  overflow: auto;
 }
 </style>
 

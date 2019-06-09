@@ -34,7 +34,7 @@
           <Tabfind></Tabfind>
         </mt-tab-container-item>
         <mt-tab-container-item id="My">
-          <Myname></Myname>
+          <Myname :loginresult="loginresult"></Myname>
         </mt-tab-container-item>
       </mt-tab-container>
     </div>
@@ -69,6 +69,7 @@ import My from "./weixin/My.vue";
 
 import MailList from "./weixin/MailList.vue";
 export default {
+  name: "weixin",
   data() {
     return {
       selected: "WeChat",
@@ -105,7 +106,9 @@ export default {
       },
       list: [],
       lists: [],
-      lists1: []
+      lists1: [],
+      loginresult: [],
+      loginresult1: []
     };
   },
   components: {
@@ -176,6 +179,7 @@ export default {
           this.$toast(result.data.msg, 2000);
         }
         this.Juindex();
+        this.detailstime();
       });
     },
     Juindex() {
@@ -191,7 +195,7 @@ export default {
         var arr = [],
           arr1 = [];
         for (var i = 0; i < result.data.length; i++) {
-          if (result.data[i][0].wx_details_time != undefined) {
+          if (result.data[i][0].wx_details_time !== undefined) {
             arr.push(result.data[i][0].wx_details_time.split(",")[1]);
           }
           var err = result.data[i][0].wx_details.split(",");
@@ -204,14 +208,36 @@ export default {
         }
         this.lists = arr;
         this.lists1 = arr1;
+        this.paramsfrist();
       });
+    },
+    paramsfrist() {
+      if (this.$route.params.loginresult == undefined) {
+      } else {
+        this.loginresult = this.$route.params.loginresult.resultss;
+        //刷新页面保留数据失败
+        // var n = this.$route.params.loginresult.resultss;
+        // var arr = [];
+        // for (var p in this.loginresult) {
+        //   arr.push(p);
+        // }
+        // arr[0] = n.results1;
+        // arr[1] = n.results2;
+        // arr[2] = n.results3;
+        // arr[3] = n.results4;
+        // for (var i = 0; i < arr.length; i++) {
+        //   sessionStorage[i];
+        //   this.loginresult1.push(sessionStorage[i]);
+        // }
+      }
+      // console.log(this.loginresult1);
     }
   },
   created() {
     this.Mordload();
-    this.detailstime();
   },
-  watch: {}
+  watch: {},
+  props: {}
 };
 </script>
 <style scoped>

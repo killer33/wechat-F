@@ -29,7 +29,7 @@
     <!-- 内容弹出框 -->
     <mt-popup v-model="popupVisible[0].popupVisible" position class="foot-popup">
       <backheader title="朋友圈" :back="ofset"></backheader>
-      <circles :circles="circles"></circles>
+      <circles :circles="circles" :myarr="arr"></circles>
     </mt-popup>
     <mt-popup v-model="popupVisible[1].popupVisible" position class="foot-popup">
       <backheader title="扫一扫" :back="ofset"></backheader>
@@ -69,10 +69,11 @@ export default {
       circles: {
         Bgimg: "http://172.242.19.42:3000/wechat/circlebg.png",
         // 朋友圈自己姓名
-        name: "Lisi",
+        name: "",
         // 朋友圈个人头像
         nameImg: "http://172.242.19.42:3000/wechat/tabfind4.png"
-      }
+      },
+      arr: []
     };
   },
   props: {},
@@ -81,6 +82,7 @@ export default {
       switch (n) {
         case 1:
           this.popupVisible[0].popupVisible = true;
+          this.pengyouquan();
           break;
         case 2:
           this.popupVisible[1].popupVisible = true;
@@ -105,6 +107,21 @@ export default {
       for (var p of this.popupVisible) {
         p.popupVisible = false;
       }
+    },
+    pengyouquan() {
+      this.axios.get("pengyouquan").then(result => {
+        var result = result.data.data;
+        this.arr = result.arr;
+        var myresult = result.myresult[0];
+        var circles = this.circles;
+        if (myresult.wx_myfriendship_bgimg !== "")
+          circles.Bgimg = myresult.wx_myfriendship_bgimg;
+        if (myresult.wx_myfriendship_img !== "")
+          circles.nameImg = myresult.wx_myfriendship_img;
+        if (myresult.wx_myfriendship_name !== "")
+          circles.name = myresult.wx_myfriendship_name;
+        console.log(this.arr);
+      });
     }
   },
   components: {

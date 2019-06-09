@@ -9,6 +9,7 @@ Vue.use(Router)
 export default new Router({
   routes: [{
       path: '/Weixin',
+      name: 'weixin',
       component: Weixin
     },
     {
@@ -17,7 +18,8 @@ export default new Router({
     },
     {
       path: '/login',
-      component: Login
+      name: "login",
+      component: Login,
     },
     {
       path: '/Weixin/chat/:lid',
