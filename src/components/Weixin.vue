@@ -154,6 +154,7 @@ export default {
               p.isselect = false;
             }
             this.isImgTF[0].isselect = true;
+            this.selected="WeChat"
         }
       } else {
         this.Juindex();
