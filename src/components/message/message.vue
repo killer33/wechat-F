@@ -42,7 +42,8 @@ export default {
     uname: { default: "" },
     clickroom: { type: Function },
     detailstime: { default: "" },
-    detailsneirong: { default: "" }
+    detailsneirong: { default: "" },
+
   },
   components: {
     mydatatime

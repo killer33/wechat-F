@@ -2,7 +2,7 @@
   <div class="chatroom">
     <div class="back">
       <span class="leftback">
-        <img src="http://172.242.19.42:3000/wechat/ic_back.png" alt @click="clickroom(),clear()">
+        <img src="http://172.242.19.42:3000/wechat/ic_back.png" alt @click="clickroom()">
         <p>{{uname}}</p>
       </span>
 
@@ -48,21 +48,21 @@ export default {
       chatContent: "",
       Content: [],
       display: "display:none",
-      randomReply: [
-        "你好!",
-        "好的",
-        "OK",
-        "没问题",
-        "就这样",
-        "再见",
-        "早上好",
-        "晚上好",
-        "中午好"
-      ],
+      // randomReply: [
+      //   "你好!",
+      //   "好的",
+      //   "OK",
+      //   "没问题",
+      //   "就这样",
+      //   "再见",
+      //   "早上好",
+      //   "晚上好",
+      //   "中午好"
+      // ],
       neirong1: "",
       chatUser: false,
-      details: [],
-      thisdetails: []
+      // details: [],
+      // thisdetails: []
     };
   },
   methods: {
@@ -72,18 +72,18 @@ export default {
           askImg: "a_7.png",
           askContent: this.chatContent
         }),
-          (this.chatContent = "");
-        setTimeout(() => {
-          this.Content.push({
-            replyImg: "a_7.png",
-            replyContent: this.randomReply[Math.floor(Math.random() * 9)]
-            //自动回复代码this.randomReply[Math.floor(Math.random() * 19)]
-          });
-        }, 1000);
+          this.chatContent = "";
+        // setTimeout(() => {
+        //   this.Content.push({
+        //     replyImg: "a_7.png",
+        //     replyContent: this.randomReply[Math.floor(Math.random() * 9)]
+        //     //自动回复代码this.randomReply[Math.floor(Math.random() * 19)]
+        //   });
+        // }, 1000);
       }
     },
     clear() {
-      this.Content = [];
+      // this.Content = [];
     },
     scroll() {
       var now = new Date();
@@ -96,29 +96,52 @@ export default {
     senddetails() {
       this.axios.get("details", { params: { lid: this.lid } }).then(result => {
         var result = result.data.data;
-        var arr = [];
-        for (var p of result[0].wx_details.split(",")) {
-          arr.push(p.split(" "));
+        // var arr = [];
+        // for (var p of result[0].wx_details.split(",")) {
+        //   arr.push(p.split(" "));
+        // }
+        // for (var i = 0, ii = 0; i < arr.length; i++) {
+        //   var reg = arr[i][0].search(this.lid);
+        //    if (arr[i][0].search(this.lid) == "1") {
+        //      this.details[ii] = arr[i]
+        //        .join(",")
+        //        .split(",")[1]
+        //        .replace(/\[/g, "")
+        //        .replace(/\]/g, "");
+        //      ii++;
+        //    } else {
+        //      this.thisdetails = arr[i]
+        //        .join(",")
+        //        .split(",")[1]
+        //        .replace(/\[/g, "")
+        //        .replace(/\]/g, "");
+        //    }
+
+        //}
+        // console.log(result);
+        var arr=[];
+        for(var p of result[0].wx_details.split(",")){
+            arr.push(p.split(" "));
         }
-        for (var i = 0, ii = 0; i < arr.length; i++) {
-          var reg = arr[i][0].search(this.lid);
-          if (arr[i][0].search(this.lid) == "1") {
-            this.details[ii] = arr[i]
-              .join(",")
-              .split(",")[1]
-              .replace(/\[/g, "")
-              .replace(/\]/g, "");
-            ii++;
-          } else {
-            this.thisdetails = arr[i]
-              .join(",")
-              .split(",")[1]
-              .replace(/\[/g, "")
-              .replace(/\]/g, "");
-          }
+        // console.log(arr);
+        for(var i=0;i<arr.length;i++){
+            var mylid=arr[i][0].replace(/\[/g, "").replace(/\]/g, "");
+            // console.log(mylid);
+            var con=arr[i][1].replace(/\[/g, "").replace(/\]/g, "");
+            // console.log(con);
+            if(mylid==result[0].wx_myid_lid){
+              this.Content.push({
+                askImg: "a_7.png",
+                askContent: con
+              })
+            }else if(mylid==result[0].wx_thid_lid){
+              this.Content.push({
+                replyImg: "a_7.png",
+                replyContent: con
+              })
+            }
         }
-        // console.log(this.details);
-        // console.log(this.thisdetails);
+        
       });
     }
   },
@@ -127,15 +150,17 @@ export default {
     lid: { default: "" },
     cUser: { type: Function },
     uname: { default: "" },
-    img: { default: "" }
+    img: { default: "" },
   },
   watch: {
     Content() {
       this.scroll();
+      
     },
-    lid() {
+    lid(){
       this.senddetails();
-    }
+      console.log(this.Content);
+    },
   },
   components: {
     chatUser: chatUser

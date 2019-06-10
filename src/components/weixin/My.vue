@@ -1,22 +1,19 @@
 <template>
-  <div class="container">
+  <div class="containe">
     <div class="my-info">
       <div class="left-info">
-        <!-- 头像 -->
-        <img :src="loginresult.results1" alt="头像" class="left-img">
+        <img src="http://172.242.19.42:3000/wechat/tabfind4.png" alt="头像" class="left-img">
         <div class="info-name" @click="open(1)">
-          <!-- name名 -->
           <h3>minion</h3>
-          <!-- 微信号 -->
-          <span>微信号:{{loginresult.results4}}</span>
+          <span>微信号：DespicableMe</span>
         </div>
       </div>
       <div class="right-img">
         <img src="http://172.242.19.42:3000/wechat/ic_my1.png" alt>
       </div>
     </div>
-    <div class="info-list" @click="open(2)">
-      <div>
+    <div class="info-list">
+      <div @click="open(2)">
         <img src="http://172.242.19.42:3000/wechat/ic_my1.png" alt>
         <span>钱包</span>
       </div>
@@ -50,25 +47,42 @@
     </mt-popup>
     <mt-popup v-model="popupVisible[2].popupVisible" position class="foot-popup">
       <backheader title="收藏" :back="ofset"></backheader>
+      <collect></collect>
     </mt-popup>
     <mt-popup v-model="popupVisible[3].popupVisible" position class="foot-popup">
       <backheader title="相册" :back="ofset"></backheader>
+      <aldum :myInfo="myInfo" ></aldum>
     </mt-popup>
     <mt-popup v-model="popupVisible[4].popupVisible" position class="foot-popup">
       <backheader title="卡包" :back="ofset"></backheader>
+      <cardbag></cardbag>
     </mt-popup>
     <mt-popup v-model="popupVisible[5].popupVisible" position class="foot-popup">
       <backheader title="表情" :back="ofset"></backheader>
     </mt-popup>
-    <mt-popup v-model="popupVisible[6].popupVisible" position class="foot-popup">
+    <mt-popup v-model="popupVisible[6].popupVisible" class="foot-popup">
       <backheader title="设置" :back="ofset"></backheader>
+      <setting></setting>
     </mt-popup>
   </div>
 </template>
 
 <script>
 import backheader from "./weixinhead/backheader.vue";
+// 我的钱包
 import Money from "./weixinmy/money.vue";
+// 收藏
+import collect from "./weixinmy/mycollect.vue"
+// 相册
+import aldum from "./weixinmy/myaldum.vue";
+
+
+// 卡包
+import cardbag from "./weixinmy/mycardbag.vue";
+
+// 设置
+import setting from "./weixinmy/mysetting.vue";
+
 export default {
   data() {
     return {
@@ -80,12 +94,25 @@ export default {
         { popupVisible: false },
         { popupVisible: false },
         { popupVisible: false }
-      ]
+      ],
+       myInfo: {
+        // 个人相册封面
+        Bgimg: "http://172.242.19.42:3000/wechat/circlebg.png",
+        // 姓名
+         name: "Lisi",
+        //头像
+         nameImg: "http://172.242.19.42:3000/wechat/tabfind4.png",
+      },
     };
   },
   components: {
-    backheader,
-    Money
+      backheader,
+      Money,
+      setting,
+      cardbag,
+      aldum,
+      collect,
+
   },
   methods: {
     open(n) {
@@ -120,15 +147,12 @@ export default {
         p.popupVisible = false;
       }
     }
-  },
-  props: {
-    loginresult: { default: "" }
   }
 };
 </script>
 <style scoped>
 /* 最外层div */
-.container {
+.containe {
   padding: 0px;
 }
 .my-info {
@@ -189,7 +213,11 @@ export default {
 .mint-popup {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  background-color: #eee9e9;
+}
+.foot-popup{
+  width: 100%;
+  height:100%;
 }
 </style>
 

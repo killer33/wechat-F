@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <!-- <div style="height:50px;"></div> -->
+  <div class="container-money">
     <!-- 钱包列表 -->
     <div class="money-list">
       <div class="sfk" @click="test()">
@@ -71,6 +70,11 @@ export default {
 };
 </script>
 <style scoped>
+.container-money{
+  height: 100%;
+  width: 100%;
+  overflow:scroll;
+}
 /* 钱包列表 */
 .money-list {
   width: 100%;
