@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Weixin from './components/Weixin.vue'
 import Login from './components/login.vue'
 import chat from './components/Weixin.vue'
-import list1 from './components/weixin/datetime/date.vue'
+import list1 from './components/message/message.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -24,10 +24,10 @@ export default new Router({
     {
       path: '/Weixin/chat/:lid',
       component: chat
+    }, {
+      path: '/list1/:lid',
+      component: list1
     }
-    //   path: '/list1',
-    //   component: list1
-    // }
 
   ]
 })

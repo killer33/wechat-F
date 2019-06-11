@@ -25,6 +25,7 @@
                   :lid="lid"
                   :opensss="opensss"
                   :openssss="openssss"
+                  :opensends="opensends"
                 ></MailListBody>
               </mt-popup>
               <mt-popup v-model="popupVisible" class="img-img">
@@ -39,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class="page-10">24</div>
+    <!-- <div class="page-10">24</div> -->
     <div></div>
   </div>
 </template>
@@ -66,7 +67,7 @@ export default {
       titlelist: "微信"
     };
   },
-  props: { Judgement: { type: Function } },
+  props: { Judgement: { type: Function }, opensends: { type: Function } },
   methods: {
     loadMore() {
       this.axios
