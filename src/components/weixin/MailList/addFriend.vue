@@ -1,6 +1,6 @@
 <template>
     <div class="all">
-        <input type="text" placeholder="微信号/手机号" v-model="Fname" class="searchFriend">
+        <input type="text" placeholder="微信名/手机号/邮箱" v-model="Fname" class="searchFriend">
         <mt-button size="large" class="searchButton" @click="search">查找</mt-button>
         <div style="clear:both"></div>
         <div class="friendContent">
@@ -21,11 +21,15 @@ export default {
         return{
             Fname:"",
             friend:true,
+            uname:"",
+            email:"",
+            phone:""
         }
     },
     methods:{
+        
         search(){
-            this.axios.get().then(result=>{
+            this.axios.get(`loginchazhao?`).then(result=>{
 
             })
         },

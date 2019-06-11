@@ -451,10 +451,8 @@ server.get("/loginchazhao", (req, res) => {
   if (uname == "" || phone == "" || email == "") return;
   pool.query(`select * from wx_login Where uname=?||phone=?||email=?`, [uname, phone, email], (err, result) => {
 
-<<<<<<< HEAD
 })
 //
-=======
     if (err) console.log(err);
     if (result.length <= 0) {
       res.send({
@@ -486,4 +484,3 @@ server.get("/logintianjia", (req, res) => {
     // pool.query("update ")
   })
 })
->>>>>>> b7b02342de66df039ae71bb332538e6893ebc52e
