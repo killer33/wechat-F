@@ -6,6 +6,7 @@
       <MyilListHeaders
         title="新的朋友"
         :image="`http://172.242.19.42:3000/wechat/MyILlist/myillistheader1.png`"
+        :openadd="openadd"
       ></MyilListHeaders>
       <div>
         <MyilListHeaders
@@ -35,9 +36,15 @@ export default {
   data() {
     return {};
   },
-  methods: {},
+  props:{
+    openadd:{type:Function}
+  },
+  methods: {
+    
+  },
   components: {
     MyilListHeaders
-  }
+  },
+  
 };
 </script>

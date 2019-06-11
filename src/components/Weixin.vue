@@ -2,7 +2,7 @@
   <div>
     <!-- 头 -->
     <div>
-      <Tabheader :header="TabHeader"></Tabheader>
+      <Tabheader :header="TabHeader" :openadd="openadd"></Tabheader>
     </div>
     <div>
       <!-- 切换面板 -->
@@ -28,7 +28,7 @@
         <!-- 好友列表 -->
 
         <mt-tab-container-item id="MailList">
-          <MailList :Judgement="Judgement"></MailList>
+          <MailList :Judgement="Judgement" :openadd="openadd"></MailList>
         </mt-tab-container-item>
         <mt-tab-container-item id="find">
           <Tabfind></Tabfind>
@@ -56,6 +56,10 @@
         </mt-tab-item>
       </mt-tabbar>
     </div>
+    <mt-popup position="right" class="addfriend" v-model="isadd">
+        <backheader :back="back" :title="titlename"></backheader>        
+        <add></add>                                    
+    </mt-popup>
   </div>
 </template>
 
@@ -65,6 +69,9 @@ import Tabheader from "./weixin/tabheader.vue";
 import Messagelist from "./message/messagelist";
 import Tabfind from "./weixin/TabFind.vue";
 import My from "./weixin/My.vue";
+import backheader from "./weixin/weixinhead/backheader";
+// 引入添加朋友
+import add from "./weixin/MailList/addFriend";
 // 列表插件1
 
 import MailList from "./weixin/MailList.vue";
@@ -76,7 +83,8 @@ export default {
       TabHeader: {
         title: "微信",
         Imgsearch: "http://172.242.19.42:3000/wechat/search.png",
-        Imgadd: "http://172.242.19.42:3000/wechat/ic_add.png"
+        Imgadd: "http://172.242.19.42:3000/wechat/ic_add.png",
+        
       },
       isImgTF: [
         { isselect: true },
@@ -108,7 +116,9 @@ export default {
       lists: [],
       lists1: [],
       loginresult: [],
-      loginresult1: []
+      loginresult1: [],
+      isadd:false,
+      titlename:"添加朋友",
     };
   },
   components: {
@@ -117,7 +127,9 @@ export default {
     Tabfind,
     Myname: My,
     MailList,
-    Messagelist
+    Messagelist,
+    backheader,
+    add,
   },
   methods: {
     Judgement(e) {
@@ -232,7 +244,17 @@ export default {
         // }
       }
       // console.log(this.loginresult1);
-    }
+    },
+    openadd(){
+      if(!this.isadd){
+        this.isadd=true;
+      }
+    },
+    back(){
+      if(this.isadd){
+        this.isadd=false;
+      }
+    },
   },
   created() {
     this.Mordload();
@@ -245,6 +267,11 @@ export default {
 .mint-tabbar > .mint-tab-item.is-selected {
   color: #45c014;
   background-color: transparent;
+}
+/* 加好友弹窗 */
+.addfriend{
+  width: 100%;
+  height: 100%;
 }
 </style>
 
