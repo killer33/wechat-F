@@ -390,7 +390,6 @@ server.get("/loginzhuce", (req, res) => {
         pool.query("insert into wx_login set uname=?,upass=?,phone=?", [uname, upass, phone], (err, result) => {
           if (err) console.log(err);
           uid = result.insertId;
-          console.log(uid);
         });
       }, 1000);
 
@@ -419,7 +418,6 @@ server.get("/loginzhuce", (req, res) => {
     return p;
   }
   Ane1().then(data => {
-    console.log(data);
     return Ane2();
   }).then((data) => {
     console.log(data);
