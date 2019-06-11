@@ -72,7 +72,11 @@ server.get("/login", (req, res) => {
   var upass = req.query.upass;
   if (req.session.sid != undefined) {
     pool.query("SELECT uid, uname, phone, img FROM wx_login", (err, result) => {
-      res.send({ code: 1, msg: "登录成功", data: result });
+      res.send({
+        code: 1,
+        msg: "登录成功",
+        data: result
+      });
     });
   } else {
     var sql = " SELECT uid,uname,phone,img FROM wx_login";
@@ -147,7 +151,7 @@ server.get("/weixin", (req, res) => {
     }
   });
 });
-Array.prototype.indexVf = function(arr) {
+Array.prototype.indexVf = function (arr) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] == arr) {
       return i;
@@ -373,3 +377,52 @@ server.get("/pengyouquan", (req, res) => {
     }
   );
 });
+server.get("/loginzhuce", (req, res) => {
+  var uname = req.query.uname,
+    upass = req.query.upass;
+  phone = req.query.phone;
+  var uid;
+  if (!uname & upass) return;
+
+  function Ane1() {
+    var p = new Promise(function () {
+      setTimeout(() => {
+        pool.query("insert into wx_login set uname=?,upass=?,phone=?", [uname, upass, phone], (err, result) => {
+          if (err) console.log(err);
+          uid = result.insertId;
+          console.log(uid);
+        });
+      }, 1000);
+
+    })
+    return p;
+  }
+
+  function Ane2() {
+    var p = new Promise(function () {
+      setTimeout(() => {
+        pool.query("insert into wx_chatlist set uname=?", [uname], (err, result) => {
+          if (err) console.log(err);
+        })
+        pool.query("insert into wx_login_chat set login_char=?,istruechat=true,istruenews=true,issearch=true", [
+          uid
+        ], (err, result) => {
+          if (err) console.log(err);
+          res.send({
+            code: 1,
+            msg: "注册成功",
+            reuslt
+          });
+        })
+      }, 1000);
+    });
+    return p;
+  }
+  Ane1().then(data => {
+    console.log(data);
+    return Ane2();
+  }).then((data) => {
+    console.log(data);
+  })
+
+})
