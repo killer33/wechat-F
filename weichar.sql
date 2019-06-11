@@ -18,7 +18,7 @@ uname varchar(32),
 upass varchar(32),
 #phone 手机
 phone INT,
-#qq邮箱
+#邮箱
 email varchar(32),
 #注册时间
 data_time varchar(64),
@@ -30,12 +30,12 @@ protection_password varchar(64),
 img varchar(64)
 );
 insert into wx_login(uid,uname,upass,phone,email,data_time,protection,protection_password,img)values
-(null,'caocao','caocao','14587565875','1945252875@qq.com','1560034679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'guanyu','guanyu','14583535875','1945252875@qq.com','1560464679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'sunquan','sunquan','17835658755','1945252875@qq.com','1510024679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'simayi','simayi','14583535875','1945252875@qq.com','1560064679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'tom123','123456','14587565875','1945252875@qq.com','1560264679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'mike','123456','14587564875','1945252875@qq.com','156004679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png');
+(null,'caocao','caocao','14587565875','1945252875','1560034679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'guanyu','guanyu','14583535875','1945252875','1560464679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'sunquan','sunquan','17835658755','1945252875','1510024679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'simayi','simayi','14583535875','1945252875','1560064679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'tom123','123456','14587565875','1945252875','1560264679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'mike','123456','14587564875','1945252875','156004679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png');
 
 #储存登录时id再根据id查找titie_id,在查找当前表下的聊天列表id
 

@@ -379,22 +379,35 @@ server.get("/pengyouquan", (req, res) => {
 });
 server.get("/loginzhuce", (req, res) => {
   var uname = req.query.uname,
-    upass = req.query.upass;
-  phone = req.query.phone;
+    upass = req.query.upass,
+    phone = req.query.phone;
   var uid;
   if (!uname & upass) return;
 
   function Ane1() {
-    var p = new Promise(function () {
-      setTimeout(() => {
-        pool.query("insert into wx_login set uname=?,upass=?,phone=?", [uname, upass, phone], (err, result) => {
-          if (err) console.log(err);
-          uid = result.insertId;
-        });
-      }, 1000);
+    var p = new Promise(() => {
+      pool.query("select uname from wx_login where uname=?", [uname], (err, result) => {
+        if (err) console.log(err);
+        if (result.length <= 0) {
+          setTimeout(() => {
+            pool.query("insert into wx_login set uname=?,upass=?,phone=?", [uname, upass, phone], (err, result) => {
+              if (err) console.log(err);
+              uid = result.insertId;
+              Ane2();
+              Ane3();
 
+            });
+          }, 300);
+        } else {
+          res.send({
+            code: -1,
+            msg: "该账户已存在",
+            data: result
+          });
+        }
+      })
+      return p;
     })
-    return p;
   }
 
   function Ane2() {
@@ -403,24 +416,69 @@ server.get("/loginzhuce", (req, res) => {
         pool.query("insert into wx_chatlist set uname=?", [uname], (err, result) => {
           if (err) console.log(err);
         })
-        pool.query("insert into wx_login_chat set login_char=?,istruechat=true,istruenews=true,issearch=true", [
+        pool.query("insert into wx_login_chat set login_char=?,istruechat='true',istruenews='true',issearch='true'", [
           uid
         ], (err, result) => {
+          if (err) console.log(err);
+
+        })
+      }, 300);
+    });
+    return p;
+  }
+
+  function Ane3() {
+    var p = new Promise(function () {
+      setTimeout(() => {
+        pool.query("insert into wx_myfriendship set wx_release_id=?", [uid], (err, result) => {
           if (err) console.log(err);
           res.send({
             code: 1,
             msg: "注册成功",
-            reuslt
+            data: result
           });
         })
-      }, 1000);
-    });
+      })
+    })
     return p;
   }
-  Ane1().then(data => {
-    return Ane2();
-  }).then((data) => {
-    console.log(data);
-  })
+  Ane1()
+});
+server.get("/loginchazhao", (req, res) => {
+  var uname = req.query.uname;
+  var phone = req.query.phone;
+  var email = req.query.email;
+  if (uname == "" || phone == "" || email == "") return;
+  pool.query(`select * from wx_login Where uname=?||phone=?||email=?`, [uname, phone, email], (err, result) => {
 
+    if (err) console.log(err);
+    if (result.length <= 0) {
+      res.send({
+        code: -1,
+        msg: "该用户不存在"
+      });
+    } else {
+      req.session.tjid = result[0].uid;
+      res.send({
+        code: 1,
+        msg: "查找到该用户",
+        data: result
+      });
+    }
+  })
+})
+server.get("/logintianjia", (req, res) => {
+  var sid = req.session.sid;
+  var tjid = req.session.tjid;
+  console.log(tjid);
+  if (tjid == undefined) return;
+  pool.query("select * from wx_login_chat Where lc_id=?", [sid], (err, result) => {
+    if (err) console.log(err);
+    var arr, arr1;
+    arr = result[0].login_char + "," + tjid;
+    console.log(arr);
+    console.log(result[0].login_char);
+    res.send(result);
+    // pool.query("update ")
+  })
 })
