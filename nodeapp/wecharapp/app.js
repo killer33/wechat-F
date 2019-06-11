@@ -214,6 +214,23 @@ server.get("/sends", (req, res) => {
 server.get("/wload", (req, res) => {
   var sid = req.session.sid;
   if (!sid) return;
+  pool.query("select*from wx_login_chat where lc_id=?", [sid], (err, result) => {
+    if (err) console.log(err);
+    var arr = [];
+    var arr1 = [];
+    var arr2 = [];
+    arr = result[0].istruenews.split(",");
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] == "true") {
+        //将istruenews为false的下标添加到arr1中
+        arr1.push(i);
+      }
+    }
+    for (var p of arr1) {
+      arr2 += result[0].login_char.split(",")[p];
+    }
+    req.session.lidnews = arr2;
+  })
   var sql = "select login_char,istruechat from wx_login_chat Where lc_id=?";
   pool.query(sql, [sid], (err, result) => {
     if (err) console.log(err);
@@ -257,6 +274,7 @@ server.get("/wload", (req, res) => {
       });
     }
   });
+
 });
 //获得列表聊天时间及对话
 server.get("/detailstime", (req, res) => {
@@ -347,7 +365,7 @@ server.get("/details", (req, res) => {
 //朋友圈
 server.get("/pengyouquan", (req, res) => {
   var sid = req.session.sid;
-  var lids = req.session.lid;
+  var lids = req.session.lidnews;
   if (!sid | !lids) return;
   var arr = [{}],
     n = 0;
@@ -497,7 +515,7 @@ server.get("/logintianjia", (req, res) => {
           msg: "已经是您的好友了"
         });
       }
-      console.log(result);
+      // console.log(result);
     })
   })
 })

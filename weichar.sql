@@ -18,7 +18,7 @@ uname varchar(32),
 upass varchar(32),
 #phone 手机
 phone INT,
-#邮箱
+#qq邮箱
 email varchar(32),
 #注册时间
 data_time varchar(64),
@@ -30,12 +30,12 @@ protection_password varchar(64),
 img varchar(64)
 );
 insert into wx_login(uid,uname,upass,phone,email,data_time,protection,protection_password,img)values
-(null,'caocao','caocao','14587565875','1945252875','1560034679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'guanyu','guanyu','14583535875','1945252875','1560464679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'sunquan','sunquan','17835658755','1945252875','1510024679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'simayi','simayi','14583535875','1945252875','1560064679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'tom123','123456','14587565875','1945252875','1560264679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'mike','123456','14587564875','1945252875','156004679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png');
+(null,'caocao','caocao','14587565875','1945252875@qq.com','1560034679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'guanyu','guanyu','14583535875','1945252875@qq.com','1560464679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'sunquan','sunquan','17835658755','1945252875@qq.com','1510024679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'simayi','simayi','14583535875','1945252875@qq.com','1560064679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'tom123','123456','14587565875','1945252875@qq.com','1560264679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
+(null,'mike','123456','14587564875','1945252875@qq.com','156004679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png');
 
 #储存登录时id再根据id查找titie_id,在查找当前表下的聊天列表id
 
@@ -123,16 +123,16 @@ wx_release_content_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
        
 );
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '曹操', 'null', '宁我负人,毋人负我!', '2019',0,1);
+(null, '曹操', 'null', '宁我负人,毋人负我!',1559906681702,0,1);
 
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '关羽', 'null', '玉可碎不可改其质,竹可焚不可毁其节。', '2019',0,2);
+(null, '关羽', 'null', '玉可碎不可改其质,竹可焚不可毁其节。',1559906681702,0,2);
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '孙权', 'null', '曹有张文远，吾有甘兴霸!', '2019',0,3);
+(null, '孙权', 'null', '曹有张文远，吾有甘兴霸!',1559906681702,0,3);
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '司马懿', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。','2019/1/1',0,4),
-(null, 'tom', 'null', '夫将兵者，不逃则死。', '2012/1/1',0,5),
-(null, 'mike', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。','1934/1/1',0,6);
+(null, '司马懿', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。',1559906681702,0,4),
+(null, 'tom', 'null', '夫将兵者，不逃则死。',1559906681702,0,5),
+(null, 'mike', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。',1559906681702,0,6);
 
 
 #自己朋友圈表信息
