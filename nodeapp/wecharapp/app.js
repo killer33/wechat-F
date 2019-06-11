@@ -70,24 +70,30 @@ server.get("/loginuname", (req, res) => {
 server.get("/login", (req, res) => {
   var uname = req.query.uname;
   var upass = req.query.upass;
-  var sql = " SELECT uid,uname,phone,img FROM wx_login";
-  sql += " WHERE uname = ? AND upass = ?";
-  pool.query(sql, [uname, upass], (err, result) => {
-    if (err) throw console.log(err);
-    if (result.length == 0) {
-      res.send({
-        code: -1,
-        msg: "用户或密码错误"
-      });
-    } else {
-      req.session.sid = result[0].uid;
-      res.send({
-        code: 1,
-        msg: "登录成功",
-        data: result
-      });
-    }
-  });
+  if (req.session.sid != undefined) {
+    pool.query("SELECT uid, uname, phone, img FROM wx_login", (err, result) => {
+      res.send({ code: 1, msg: "登录成功", data: result });
+    });
+  } else {
+    var sql = " SELECT uid,uname,phone,img FROM wx_login";
+    sql += " WHERE uname = ? AND upass = ?";
+    pool.query(sql, [uname, upass], (err, result) => {
+      if (err) throw console.log(err);
+      if (result.length == 0) {
+        res.send({
+          code: -1,
+          msg: "用户或密码错误"
+        });
+      } else {
+        req.session.sid = result[0].uid;
+        res.send({
+          code: 1,
+          msg: "登录成功",
+          data: result
+        });
+      }
+    });
+  }
 });
 //判断是否已登录否则跳转到登录页面进行登录
 server.get("/sessiony", (req, res) => {
@@ -141,7 +147,7 @@ server.get("/weixin", (req, res) => {
     }
   });
 });
-Array.prototype.indexVf = function (arr) {
+Array.prototype.indexVf = function(arr) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] == arr) {
       return i;
@@ -341,24 +347,29 @@ server.get("/pengyouquan", (req, res) => {
   if (!sid | !lids) return;
   var arr = [{}],
     n = 0;
-  pool.query("SELECT*FROM wx_myfriendship WHERE wx_myfriendship_id=?", [sid], (err, myresult) => {
-    if (err) console.log(err);
-    var sql = "SELECT * FROM wx_release_content WHERE wx_release_content_id=?"
-    for (var i = 0; i < lids.length; i++) {
-      var ld = Number(lids[i]);
-      pool.query(sql, [ld], (err, result) => {
-        n++;
-        arr[n - 1] = result;
-        if (n == lids.length) {
-          res.send({
-            code: 1,
-            data: {
-              myresult,
-              arr
-            }
-          });
-        }
-      })
+  pool.query(
+    "SELECT*FROM wx_myfriendship WHERE wx_myfriendship_id=?",
+    [sid],
+    (err, myresult) => {
+      if (err) console.log(err);
+      var sql =
+        "SELECT * FROM wx_release_content WHERE wx_release_content_id=?";
+      for (var i = 0; i < lids.length; i++) {
+        var ld = Number(lids[i]);
+        pool.query(sql, [ld], (err, result) => {
+          n++;
+          arr[n - 1] = result;
+          if (n == lids.length) {
+            res.send({
+              code: 1,
+              data: {
+                myresult,
+                arr
+              }
+            });
+          }
+        });
+      }
     }
-  })
-})
+  );
+});
