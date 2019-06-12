@@ -148,7 +148,7 @@ export default {
     },
     loadname(){
       this.ajax("login").then(result=>{
-          console.log(result);
+          // console.log(result);
       })
     }
   },

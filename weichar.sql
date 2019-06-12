@@ -123,16 +123,16 @@ wx_release_content_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
        
 );
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '曹操', 'null', '宁我负人,毋人负我!', '2019',0,1);
+(null, '曹操', 'null', '宁我负人,毋人负我!',1559906681702,0,1);
 
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '关羽', 'null', '玉可碎不可改其质,竹可焚不可毁其节。', '2019',0,2);
+(null, '关羽', 'null', '玉可碎不可改其质,竹可焚不可毁其节。', 1559906681702,0,2);
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '孙权', 'null', '曹有张文远，吾有甘兴霸!', '2019',0,3);
+(null, '孙权', 'null', '曹有张文远，吾有甘兴霸!',1559906681702,0,3);
 INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx_release_content_title,wx_release_content_details,wx_release_content_data_time,wx_release_content_fabulous,wx_release_content_imgid) VALUES
-(null, '司马懿', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。','2019/1/1',0,4),
-(null, 'tom', 'null', '夫将兵者，不逃则死。', '2012/1/1',0,5),
-(null, 'mike', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。','1934/1/1',0,6);
+(null, '司马懿', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。',1559906681702,0,4),
+(null, 'tom', 'null', '夫将兵者，不逃则死。', 1559906681702,0,5),
+(null, 'mike', 'null', '夫将兵者，不战则守，不守则走，不走则逃，不逃则死。',1559906681702,0,6);
 
 
 #自己朋友圈表信息
