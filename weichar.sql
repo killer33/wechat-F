@@ -27,15 +27,16 @@ protection varchar(64),
 #密保答案1 也要加密md5()
 protection_password varchar(64),
 #小头像
-img varchar(64)
+img varchar(64),
+erweima varchar(64)
 );
-insert into wx_login(uid,uname,upass,phone,email,data_time,protection,protection_password,img)values
-(null,'caocao','caocao','14587565875','1945252875','1560034679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'guanyu','guanyu','14583535875','1945252875','1560464679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'sunquan','sunquan','17835658755','1945252875','1510024679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'simayi','simayi','14583535875','1945252875','1560064679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'tom123','123456','14587565875','1945252875','1560264679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png'),
-(null,'mike','123456','14587564875','1945252875','156004679765','null','null','http://172.242.19.42:3000/wechat/headerimg.png');
+insert into wx_login(uid,uname,upass,phone,email,data_time,protection,protection_password,img,erweima)values
+(null,'caocao','caocao','14587565875','1945252875','1560034679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png'),
+(null,'guanyu','guanyu','14583535875','1945252875','1560464679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png'),
+(null,'sunquan','sunquan','17835658755','1945252875','1510024679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/cc.png'),
+(null,'simayi','simayi','14583535875','1945252875','1560064679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png'),
+(null,'tom123','123456','14587565875','1945252875','1560264679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/cc.png'),
+(null,'mike','123456','14587564875','1945252875','156004679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png');
 
 #储存登录时id再根据id查找titie_id,在查找当前表下的聊天列表id
 
@@ -95,12 +96,12 @@ source varchar(128)
 );
 
 insert into wx_chatlist(lid,uname,remarks,sex,region,area,title,img,release_content_id,common,source)values
-(null,'曹操','曹曹？',1,'河南','洛阳',"宁我负人","http://172.242.19.42:3000/wechat/headerimg.png",1,null,null),
-(null,'关羽','关羽？',1,'河南','洛阳',"玉可碎不可改其质","http://172.242.19.42:3000/wechat/headerimg.png",2,null,null),
-(null,'孙权','孙权？',1,'河南','洛阳',"吾有甘兴霸","http://172.242.19.42:3000/wechat/headerimg.png",3,null,null),
-(null,'司马懿','司马懿？',1,'河南','洛阳',"不逃则死","http://172.242.19.42:3000/wechat/headerimg.png",4,null,null),
-(null,'tom','tom',1,'河南','禹州',"吾有兴霸","http://172.242.19.42:3000/wechat/headerimg.png",5,null,null),
-(null,'mike','mike',0,'河南','禹州',"不逃则死","http://172.242.19.42:3000/wechat/headerimg.png",6,null,null);
+(null,'曹操','曹曹？',1,'河南','洛阳',"宁我负人","http://127.0.0.1:3000/wechat/headerimg.png",1,null,null),
+(null,'关羽','关羽？',1,'河南','洛阳',"玉可碎不可改其质","http://127.0.0.1:3000/wechat/headerimg.png",2,null,null),
+(null,'孙权','孙权？',1,'河南','洛阳',"吾有甘兴霸","http://127.0.0.1:3000/wechat/headerimg.png",3,null,null),
+(null,'司马懿','司马懿？',1,'河南','洛阳',"不逃则死","http://127.0.0.1:3000/wechat/headerimg.png",4,null,null),
+(null,'tom','tom',1,'河南','禹州',"吾有兴霸","http://127.0.0.1:3000/wechat/headerimg.png",5,null,null),
+(null,'mike','mike',0,'河南','禹州',"不逃则死","http://127.0.0.1:3000/wechat/headerimg.png",6,null,null);
 
 
 #发布内容对应表,朋友圈对应表
@@ -154,17 +155,17 @@ INSERT INTO wx_release_content (wx_release_content_id,wx_release_content_name,wx
     wx_release_id INT
 );
 INSERT INTO wx_myfriendship (wx_myfriendship_id,wx_myfriendship_bgimg,wx_myfriendship_name,wx_myfriendship_img,wx_release_id) VALUES
-(null, 'http://172.242.19.42:3000/wechat/circlebg.png', 'Caoc', 'http://172.242.19.42:3000/wechat/headerimg.png',1);
+(null, 'http://127.0.0.1:3000/wechat/circlebg.png', 'Caoc', 'http://127.0.0.1:3000/wechat/headerimg.png',1);
 INSERT INTO wx_myfriendship (wx_myfriendship_id,wx_myfriendship_bgimg,wx_myfriendship_name,wx_myfriendship_img,wx_release_id) VALUES
-(null, 'http://172.242.19.42:3000/wechat/circlebg.png', 'Guany', 'http://172.242.19.42:3000/wechat/headerimg.png',2);
+(null, 'http://127.0.0.1:3000/wechat/circlebg.png', 'Guany', 'http://127.0.0.1:3000/wechat/headerimg.png',2);
 
 INSERT INTO wx_myfriendship (wx_myfriendship_id,wx_myfriendship_bgimg,wx_myfriendship_name,wx_myfriendship_img,wx_release_id) VALUES
-(null, 'http://172.242.19.42:3000/wechat/circlebg.png', 'Sunq', 'http://172.242.19.42:3000/wechat/headerimg.png',3);
+(null, 'http://127.0.0.1:3000/wechat/circlebg.png', 'Sunq', 'http://127.0.0.1:3000/wechat/headerimg.png',3);
 
 INSERT INTO wx_myfriendship (wx_myfriendship_id,wx_myfriendship_bgimg,wx_myfriendship_name,wx_myfriendship_img,wx_release_id) VALUES
-(null, 'http://172.242.19.42:3000/wechat/circlebg.png', 'Simy', 'http://172.242.19.42:3000/wechat/headerimg.png',4),
-(null, 'http://172.242.19.42:3000/wechat/circlebg.png', 'tom', 'http://172.242.19.42:3000/wechat/headerimg.png',5),
-(null, 'http://172.242.19.42:3000/wechat/circlebg.png', 'mike', 'http://172.242.19.42:3000/wechat/headerimg.png',6);
+(null, 'http://127.0.0.1:3000/wechat/circlebg.png', 'Simy', 'http://127.0.0.1:3000/wechat/headerimg.png',4),
+(null, 'http://127.0.0.1:3000/wechat/circlebg.png', 'tom', 'http://127.0.0.1:3000/wechat/headerimg.png',5),
+(null, 'http://127.0.0.1:3000/wechat/circlebg.png', 'mike', 'http://127.0.0.1:3000/wechat/headerimg.png',6);
 #储存发表图片的表
   CREATE TABLE wx_myimg
     (
