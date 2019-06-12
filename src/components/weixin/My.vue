@@ -112,7 +112,6 @@ export default {
       cardbag,
       aldum,
       collect,
-
   },
   methods: {
     open(n) {
@@ -146,7 +145,15 @@ export default {
       for (var p of this.popupVisible) {
         p.popupVisible = false;
       }
+    },
+    loadname(){
+      this.ajax("login").then(result=>{
+          console.log(result);
+      })
     }
+  },
+  created(){
+    this.loadname();
   }
 };
 </script>
