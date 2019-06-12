@@ -70,9 +70,9 @@ server.get("/loginuname", (req, res) => {
 server.get("/login", (req, res) => {
   var uname = req.query.uname;
   var upass = req.query.upass;
-	var sid=req.session.sid;
+  var sid = req.session.sid;
   if (req.session.sid != undefined) {
-    pool.query("SELECT uid, uname, phone, img FROM wx_login WHERE uid=?",[sid],(err, result) => {
+    pool.query("SELECT uid, uname, phone,email,img FROM wx_login WHERE uid=?", [sid], (err, result) => {
       res.send({
         code: 1,
         msg: "登录成功",
@@ -152,7 +152,7 @@ server.get("/weixin", (req, res) => {
     }
   });
 });
-Array.prototype.indexVf = function(arr) {
+Array.prototype.indexVf = function (arr) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] == arr) {
       return i;
@@ -440,7 +440,7 @@ server.get("/loginzhuce", (req, res) => {
   }
 
   function Ane2() {
-    var p = new Promise(function() {
+    var p = new Promise(function () {
       setTimeout(() => {
         pool.query(
           "insert into wx_chatlist set uname=?",
@@ -462,7 +462,7 @@ server.get("/loginzhuce", (req, res) => {
   }
 
   function Ane3() {
-    var p = new Promise(function() {
+    var p = new Promise(function () {
       setTimeout(() => {
         pool.query(
           "insert into wx_myfriendship set wx_release_id=?",
