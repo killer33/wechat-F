@@ -147,7 +147,7 @@ export default {
       }
     },
     loadname(){
-      this.ajax("login").then(result=>{
+      this.axios.get("login").then(result=>{
           console.log(result);
       })
     }
