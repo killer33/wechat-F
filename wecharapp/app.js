@@ -511,7 +511,6 @@ server.get("/loginchazhao", (req, res) => {
 server.get("/logintianjia", (req, res) => {
   var sid = req.session.sid;
   var tjid = req.session.tjid;
-  console.log(tjid);
   if (tjid == undefined) return;
   pool.query(
     "select * from wx_login_chat Where lc_id=?",
@@ -523,14 +522,14 @@ server.get("/logintianjia", (req, res) => {
       arr1 = result[0].istruechat + "," + false;
       arr2 = result[0].istruenews + "," + true;
       arr3 = result[0].issearch + "," + true;
-      console.log(arr, arr1, arr2, arr3);
+
       // console.log(result[0].login_char);
-      res.send(result);
+      // res.send(result);
       var sql = "update wx_login_chat set login_char=?,istruechat=?,";
       sql += "istruenews=?,issearch=? where lc_id=?";
       pool.query(sql, [arr, arr1, arr2, arr3, sid], (err, result) => {
         if (err) console.log(err);
-        if (affectedRows > 0) {
+        if (result.affectedRows > 0) {
           res.send({
             code: 1,
             msg: "添加成功"
