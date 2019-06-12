@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="myilListHeades" @click="openadd()">
+    <div class="myilListHeades" @click="openadd()  ">
       <img :src="image" alt>
       <span>{{title}}</span>
     </div>

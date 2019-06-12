@@ -529,7 +529,7 @@ server.get("/logintianjia", (req, res) => {
       arr3 = result[0].issearch + "," + true;
       // console.log(arr, arr1, arr2, arr3);
       // console.log(result[0].login_char);
-      res.send(result);
+      // res.send(result);
       var sql = "update wx_login_chat set login_char=?,istruechat=?,";
       sql += "istruenews=?,issearch=? where lc_id=?";
       pool.query(sql, [arr, arr1, arr2, arr3, sid], (err, result) => {
