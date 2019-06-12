@@ -98,6 +98,10 @@ export default {
   color: #fff;
 }
 /* 腾讯服务 第三方服务标题 */
+.content-body{
+  padding: 0;
+  overflow: scroll;
+}
 .content-body h2 {
   width: 100%;
   height: 56px;
