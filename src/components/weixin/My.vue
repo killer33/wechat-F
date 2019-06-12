@@ -2,10 +2,10 @@
   <div class="containe">
     <div class="my-info">
       <div class="left-info">
-        <img src="http://172.242.19.42:3000/wechat/tabfind4.png" alt="头像" class="left-img">
+        <img :src="pro.headImg" alt="头像" class="left-img">
         <div class="info-name" @click="open(1)">
-          <h3>minion</h3>
-          <span>微信号：DespicableMe</span>
+          <h3>{{pro.myName}}</h3>
+          <span>微信号：{{pro.wechatId}}</span>
         </div>
       </div>
       <div class="right-img">
@@ -103,6 +103,12 @@ export default {
         //头像
          nameImg: "http://172.242.19.42:3000/wechat/tabfind4.png",
       },
+      // 个人基本信息
+      pro:{
+        myName:"",
+        headImg:"",
+        wechatId:""
+      }
     };
   },
   components: {
@@ -148,7 +154,9 @@ export default {
     },
     loadname(){
       this.axios.get("login").then(result=>{
-          console.log(result);
+          this.pro.myName=result.data.data[0].uname;
+          this.pro.headImg=result.data.data[0].img;
+          this.pro.wechatId=result.data.data[0].email;
       })
     }
   },

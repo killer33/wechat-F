@@ -1,6 +1,6 @@
 <template>
     <div class="all">
-        <input type="text" placeholder="微信名/手机号/邮箱" v-model="Fname" class="searchFriend">
+        <input type="text" placeholder="微信名/手机号/账号" v-model="Fname" class="searchFriend">
         <mt-button size="large" class="searchButton" @click="search">查找</mt-button>
         <div style="clear:both"></div>
         <div class="friendContent">
@@ -26,11 +26,18 @@ export default {
             phone:""
         }
     },
-    methods:{
-        
+    methods:{  
         search(){
-            this.axios.get(`loginchazhao?`).then(result=>{
-
+            if(/^1([38]\d|5[0-35-9]|7[3678])\d{8}$/.test(this.Fname)==true){
+                this.phone=this.Fname;
+            }else if(/{0-9||a-z}/.test(this.Fname)==true){
+                console.log()
+            }
+            // 手机号11位数组正则表达式
+            // 用户名包含字母数字
+            // 账号11位数字正则表达式
+            this.axios.get(`loginchazhao?${this.Fname}`).then(result=>{
+                
             })
         },
         onadd(){
