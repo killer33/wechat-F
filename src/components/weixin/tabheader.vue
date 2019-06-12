@@ -14,7 +14,7 @@
         <img src="http://172.242.19.42:3000/wechat/ic_add1.png" alt>
         <span>发起群聊</span>
       </div>
-      <div>
+      <div @click="openadd(),add()" >
         <img src="http://172.242.19.42:3000/wechat/ic_add2.png" alt>
         <span>添加朋友</span>
       </div>
@@ -45,8 +45,10 @@ export default {
     header: {
       title: { default: "" },
       Imgsearch: { default: "" },
-      Imgadd: { default: "" }
-    }
+      Imgadd: { default: "" },
+      
+    },
+    openadd:{type:Function},
   },
   methods: {
     add() {

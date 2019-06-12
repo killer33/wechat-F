@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="myilListHeades">
+    <div class="myilListHeades" @click="openadd()  ">
       <img :src="image" alt>
       <span>{{title}}</span>
     </div>
@@ -14,7 +14,12 @@ export default {
   },
   props: {
     title: { default: "" },
-    image: { default: "" }
+    image: { default: "" },
+    openadd:{type:Function},
+
+  },
+  methods:{
+
   }
 };
 </script>

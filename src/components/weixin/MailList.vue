@@ -4,7 +4,7 @@
       <div>
         <!-- 上部分内容 -->
         <div>
-          <MailListHeader></MailListHeader>
+          <MailListHeader :openadd="openadd"></MailListHeader>
         </div>
         <!-- 好友列表 -->
         <div>
@@ -67,7 +67,7 @@ export default {
       titlelist: "微信"
     };
   },
-  props: { Judgement: { type: Function }, opensends: { type: Function } },
+  props: { Judgement: { type: Function }, opensends: { type: Function },openadd:{type:Function} },
   methods: {
     loadMore() {
       this.axios
