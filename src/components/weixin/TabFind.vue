@@ -32,10 +32,11 @@
       <circles :circles="circles" :myarr="arr"></circles>
     </mt-popup>
     <mt-popup v-model="popupVisible[1].popupVisible" position class="foot-popup">
-      <backheader title="扫一扫" :back="ofset"></backheader>
+      <backheader title="二维码/条码" :back="ofset"></backheader>
     </mt-popup>
     <mt-popup v-model="popupVisible[2].popupVisible" position class="foot-popup">
       <backheader title="摇一摇" :back="ofset"></backheader>
+      <yaoyiyao></yaoyiyao>
     </mt-popup>
     <mt-popup v-model="popupVisible[3].popupVisible" position class="foot-popup">
       <backheader title="游戏" :back="ofset"></backheader>
@@ -52,8 +53,10 @@
 <script>
 // 引入返回头组件
 import backheader from "./weixinhead/backheader.vue";
-//朋友圈组件
-import circlecircle from "./weixinhead/Circle";
+//朋友圈组件w
+import circlecircle from "./TabFind/Circle";
+//摇一摇
+import yaoyiyao from "./TabFind/yaoyiyao";
 export default {
   data() {
     return {
@@ -126,7 +129,8 @@ export default {
   },
   components: {
     backheader: backheader,
-    circles: circlecircle
+    circles: circlecircle,
+    yaoyiyao
   }
 };
 </script>

@@ -157,7 +157,7 @@ export default {
           this.pro.myName=result.data.data[0].uname;
           this.pro.headImg=result.data.data[0].img;
           this.pro.wechatId=result.data.data[0].email;
-      })
+    })
     }
   },
   created(){
