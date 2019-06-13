@@ -114,6 +114,10 @@ export default {
     pengyouquan() {
       this.axios.get("pengyouquan").then(result => {
         var result = result.data.data;
+        for (var p of result.arr) {
+          p[0].isfabulous = "false";
+          p[0].imgfalse = "http://172.242.19.42:3000/wechat/Circledianzan.png";
+        }
         this.arr = result.arr;
         var myresult = result.myresult[0];
         var circles = this.circles;
@@ -123,7 +127,6 @@ export default {
           circles.nameImg = myresult.wx_myfriendship_img;
         if (myresult.wx_myfriendship_name !== "")
           circles.name = myresult.wx_myfriendship_name;
-        console.log(this.arr);
       });
     }
   },

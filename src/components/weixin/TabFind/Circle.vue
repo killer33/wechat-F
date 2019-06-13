@@ -27,9 +27,9 @@
       </div>
       <div class="for-div-span">
         <img
-          :src="img"
+          :src="p[0].imgfalse"
           alt
-          @click="dianzan(p[0].wx_release_content_fabulous)"
+          @click="dianzan(p[0].wx_release_content_id)"
           style="width:40px;height:40px;padding:10px;"
         >
         <span>{{p[0].wx_release_content_fabulous}}</span>
@@ -62,11 +62,23 @@ export default {
   },
   methods: {
     dianzan(n) {
-      console.log(n);
-      var str = [
-        "http://172.242.19.42:3000/wechat/Circledianzan.png",
-        "http://172.242.19.42:3000/wechat/Circledianzan5.png"
-      ];
+      for (var p of this.myarr) {
+        if (p[0].wx_release_content_id == n) {
+          if (p[0].isfabulous == "false") {
+            p[0].wx_release_content_fabulous++;
+            p[0].isfabulous = "true";
+            p[0].imgfalse =
+              "http://172.242.19.42:3000/wechat/Circledianzan5.png";
+          } else {
+            p[0].imgfalse =
+              "http://172.242.19.42:3000/wechat/Circledianzan.png";
+            p[0].wx_release_content_fabulous--;
+            p[0].isfabulous = "false";
+          }
+        }
+      }
+      return;
+      var str = ["http://172.242.19.42:3000/wechat/Circledianzan.png"];
       var i = 0;
       if (this.i == i) {
         this.img = str[1];
@@ -74,14 +86,13 @@ export default {
         this.i = 2;
         return n;
       } else {
-        this.img = "http://172.242.19.42:3000/wechat/Circledianzan.png";
         this.n -= 1;
         this.i = 0;
         return;
       }
     },
     add() {
-      console.log(this.myarr);
+      // console.log(this.myarr);
     }
   },
   components: {

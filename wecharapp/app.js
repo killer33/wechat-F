@@ -156,7 +156,7 @@ server.get("/weixin", (req, res) => {
     }
   });
 });
-Array.prototype.indexVf = function(arr) {
+Array.prototype.indexVf = function (arr) {
   for (var i = 0; i < this.length; i++) {
     if (this[i] == arr) {
       return i;
@@ -444,7 +444,7 @@ server.get("/loginzhuce", (req, res) => {
   }
 
   function Ane2() {
-    var p = new Promise(function() {
+    var p = new Promise(function () {
       setTimeout(() => {
         pool.query(
           "insert into wx_chatlist set uname=?",
@@ -466,7 +466,7 @@ server.get("/loginzhuce", (req, res) => {
   }
 
   function Ane3() {
-    var p = new Promise(function() {
+    var p = new Promise(function () {
       setTimeout(() => {
         pool.query(
           "insert into wx_myfriendship set wx_release_id=?",
@@ -521,32 +521,48 @@ server.get("/logintianjia", (req, res) => {
     "select * from wx_login_chat Where lc_id=?",
     [sid],
     (err, result) => {
+      var fens;
       if (err) console.log(err);
-      var arr, arr1, arr2, arr3;
-      arr = result[0].login_char + "," + tjid;
-      arr1 = result[0].istruechat + "," + false;
-      arr2 = result[0].istruenews + "," + true;
-      arr3 = result[0].issearch + "," + true;
-      // console.log(arr, arr1, arr2, arr3);
-      // console.log(result[0].login_char);
-      // res.send(result);
-      var sql = "update wx_login_chat set login_char=?,istruechat=?,";
-      sql += "istruenews=?,issearch=? where lc_id=?";
-      pool.query(sql, [arr, arr1, arr2, arr3, sid], (err, result) => {
-        if (err) console.log(err);
-        if (result.affectedRows > 0) {
-          res.send({
-            code: 1,
-            msg: "添加成功"
-          });
+      for (var p of result[0].login_char.split(",")) {
+        if (tjid !== Number(p)) {
+          fens = true;
         } else {
-          res.send({
-            code: -1,
-            msg: "已经是您的好友了"
-          });
+          fens = false;
         }
-        // console.log(result);
-      });
+      }
+      if (fens == false) {
+        res.send({
+          code: -1,
+          msg: "该用户已是您的好友"
+        });
+      } else {
+        var arr, arr1, arr2, arr3;
+        arr = result[0].login_char + "," + tjid;
+        arr1 = result[0].istruechat + "," + false;
+        arr2 = result[0].istruenews + "," + true;
+        arr3 = result[0].issearch + "," + true;
+        // console.log(arr, arr1, arr2, arr3);
+        // console.log(result[0].login_char);
+        // res.send(result);
+        var sql = "update wx_login_chat set login_char=?,istruechat=?,";
+        sql += "istruenews=?,issearch=? where lc_id=?";
+        pool.query(sql, [arr, arr1, arr2, arr3, sid], (err, result) => {
+          if (err) console.log(err);
+          if (result.affectedRows > 0) {
+            res.send({
+              code: 1,
+              msg: "添加成功"
+            });
+          } else {
+            res.send({
+              code: -1,
+              msg: "已经是您的好友了"
+            });
+            return;
+          }
+          // console.log(result);
+        });
+      }
     }
   );
 });

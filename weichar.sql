@@ -31,12 +31,12 @@ img varchar(64),
 erweima varchar(64)
 );
 insert into wx_login(uid,uname,upass,phone,email,data_time,protection,protection_password,img,erweima)values
-(null,'caocao','caocao','14587565875','1945252875','1560034679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png'),
-(null,'guanyu','guanyu','14583535875','1945252875','1560464679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png'),
-(null,'sunquan','sunquan','17835658755','1945252875','1510024679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/cc.png'),
-(null,'simayi','simayi','14583535875','1945252875','1560064679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png'),
-(null,'tom123','123456','14587565875','1945252875','1560264679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/cc.png'),
-(null,'mike','123456','14587564875','1945252875','156004679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/zcy.png');
+(null,'caocao','caocao','14587565875','1945252875','1560034679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/my/zcy.png'),
+(null,'guanyu','guanyu','14583535875','1945252875','1560464679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/my/zcy.png'),
+(null,'sunquan','sunquan','17835658755','1945252875','1510024679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/my/cc.png'),
+(null,'simayi','simayi','14583535875','1945252875','1560064679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/my/zcy.png'),
+(null,'tom123','123456','14587565875','1945252875','1560264679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/my/cc.png'),
+(null,'mike','123456','14587564875','1945252875','156004679765','null','null','http://127.0.0.1:3000/wechat/headerimg.png','http://127.0.0.1:3000/wechat/my/zcy.png');
 
 #储存登录时id再根据id查找titie_id,在查找当前表下的聊天列表id
 
