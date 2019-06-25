@@ -34,11 +34,12 @@ export default {
       console.log(this.Fname);
       if (/^1([38]\d|5[0-35-9]|7[3678])\d{8}$/.test(this.Fname) == true) {
         this.Cname = "phone";
-      } else if (/[A-Za-z0-9]{6,10}/.test(this.Fname) == true) {
-        this.Cname = "uname";
       } else if (/[0-9]{6,10}/.test(this.Fname) == true) {
         this.Cname = "email";
-      } else {
+      } else if (/[A-Za-z0-9]{6,10}/.test(this.Fname) == true) {
+        this.Cname = "uname";
+
+      }else {
         this.$messagebox("", "请输入正确格式");
         return;
       }
