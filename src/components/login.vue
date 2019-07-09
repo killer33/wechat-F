@@ -56,7 +56,7 @@ export default {
           } else {
             this.uname = "";
             this.upass = "";
-            this.yztimg = "http://172.242.19.42:3000/wechat/My_selected.png";
+            this.yztimg = "http://127.0.0.1:3000/wechat/My_selected.png";
           }
         });
     },
@@ -116,7 +116,7 @@ export default {
 /* 登录页面背景 */
 .bgImg {
   height: 800px;
-  background-image: url("http://172.242.19.42:3000/wechat/loginbg.jpg");
+  background-image: url("http://127.0.0.1:3000/wechat/loginbg.jpg");
 }
 /* logo */
 .imgDiv {
