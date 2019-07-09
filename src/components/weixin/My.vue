@@ -8,33 +8,33 @@
           <span>微信号：{{pro.wechatId}}</span>
         </div>
       </div>
-      <div class="right-img" v-on:click="openimg">
-        <img :src="pro.erweima" alt>
+      <div class="right-img">
+        <img src="http://127.0.0.1:3000/wechat/ic_my1.png" alt>
       </div>
     </div>
     <div class="info-list">
       <div @click="open(2)">
-        <img src="http://172.242.19.42:3000/wechat/ic_my1.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/ic_my1.png" alt>
         <span>钱包</span>
       </div>
       <div @click="open(3)">
-        <img src="http://172.242.19.42:3000/wechat/ic_my2.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/ic_my2.png" alt>
         <span>收藏</span>
       </div>
       <div @click="open(4)">
-        <img src="http://172.242.19.42:3000/wechat/ic_my3.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/ic_my3.png" alt>
         <span>相册</span>
       </div>
       <div @click="open(5)">
-        <img src="http://172.242.19.42:3000/wechat/ic_my4.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/ic_my4.png" alt>
         <span>卡包</span>
       </div>
       <div @click="open(6)">
-        <img src="http://172.242.19.42:3000/wechat/ic_my5.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/ic_my5.png" alt>
         <span>表情</span>
       </div>
       <div @click="open(7)">
-        <img src="http://172.242.19.42:3000/wechat/ic_my6.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/ic_my6.png" alt>
         <span>设置</span>
       </div>
     </div>
@@ -51,7 +51,7 @@
     </mt-popup>
     <mt-popup v-model="popupVisible[3].popupVisible" position class="foot-popup">
       <backheader title="相册" :back="ofset"></backheader>
-      <aldum :myInfo="myInfo"></aldum>
+      <aldum :myInfo="myInfo" ></aldum>
     </mt-popup>
     <mt-popup v-model="popupVisible[4].popupVisible" position class="foot-popup">
       <backheader title="卡包" :back="ofset"></backheader>
@@ -64,9 +64,6 @@
       <backheader title="设置" :back="ofset"></backheader>
       <setting></setting>
     </mt-popup>
-    <mt-popup v-model="popupVisibleimg" class="foot-popup-img">
-      <img @click="openimg" :src="pro.erweima" alt>
-    </mt-popup>
   </div>
 </template>
 
@@ -75,9 +72,10 @@ import backheader from "./weixinhead/backheader.vue";
 // 我的钱包
 import Money from "./weixinmy/money.vue";
 // 收藏
-import collect from "./weixinmy/mycollect.vue";
+import collect from "./weixinmy/mycollect.vue"
 // 相册
 import aldum from "./weixinmy/myaldum.vue";
+
 
 // 卡包
 import cardbag from "./weixinmy/mycardbag.vue";
@@ -97,31 +95,29 @@ export default {
         { popupVisible: false },
         { popupVisible: false }
       ],
-      myInfo: {
+       myInfo: {
         // 个人相册封面
-        Bgimg: "http://172.242.19.42:3000/wechat/circlebg.png",
+        Bgimg: "http://127.0.0.1:3000/wechat/circlebg.png",
         // 姓名
-        name: "Lisi",
+         name: "Lisi",
         //头像
-        nameImg: "http://172.242.19.42:3000/wechat/tabfind4.png"
+         nameImg: "http://127.0.0.1:3000/wechat/tabfind4.png",
       },
       // 个人基本信息
-      pro: {
-        myName: "",
-        headImg: "",
-        wechatId: "",
-        erweima: ""
-      },
-      popupVisibleimg: false
+      pro:{
+        myName:"",
+        headImg:"",
+        wechatId:""
+      }
     };
   },
   components: {
-    backheader,
-    Money,
-    setting,
-    cardbag,
-    aldum,
-    collect
+      backheader,
+      Money,
+      setting,
+      cardbag,
+      aldum,
+      collect,
   },
   methods: {
     open(n) {
@@ -156,23 +152,15 @@ export default {
         p.popupVisible = false;
       }
     },
-    loadname() {
-      this.axios.get("login").then(result => {
-        console.log(result);
-        this.pro.myName = result.data.data[0].uname;
-        this.pro.headImg = result.data.data[0].img;
-        this.pro.wechatId = result.data.data[0].email;
-        this.pro.erweima = result.data.data[0].erweima;
-        console.log(this.pro.erweima);
-      });
-    },
-    openimg() {
-      console.log(1111);
-      if (this.popupVisibleimg == false) this.popupVisibleimg = true;
-      else this.popupVisibleimg = false;
+    loadname(){
+      this.axios.get("login").then(result=>{
+          this.pro.myName=result.data.data[0].uname;
+          this.pro.headImg=result.data.data[0].img;
+          this.pro.wechatId=result.data.data[0].email;
+    })
     }
   },
-  created() {
+  created(){
     this.loadname();
   }
 };
@@ -242,13 +230,9 @@ export default {
   height: 100%;
   background-color: #eee9e9;
 }
-.foot-popup {
+.foot-popup{
   width: 100%;
-  height: 100%;
-}
-.foot-popup-img > img {
-  margin-top: 10%;
-  width: 100%;
+  height:100%;
 }
 </style>
 

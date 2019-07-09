@@ -22,7 +22,7 @@
 export default {
     data(){
         return{
-            nameImg:"http://172.242.19.42:3000/wechat/tabfind4.png",
+            nameImg:"http://127.0.0.1:3000/wechat/tabfind4.png",
             name:"曹操",
             info:"宁我负人，毋人负我！",
             time:"31分钟前"

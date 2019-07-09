@@ -82,8 +82,8 @@ export default {
       selected: "WeChat",
       TabHeader: {
         title: "微信",
-        Imgsearch: "http://172.242.19.42:3000/wechat/search.png",
-        Imgadd: "http://172.242.19.42:3000/wechat/ic_add.png",
+        Imgsearch: "http://127.0.0.1:3000/wechat/search.png",
+        Imgadd: "http://127.0.0.1:3000/wechat/ic_add.png",
         
       },
       isImgTF: [
@@ -94,23 +94,23 @@ export default {
       ],
       Wechat: {
         title: "微信",
-        imgfalse: "http://172.242.19.42:3000/wechat/Wechat.png",
-        imgtrue: "http://172.242.19.42:3000/wechat/Wechat_selected.png"
+        imgfalse: "http://127.0.0.1:3000/wechat/Wechat.png",
+        imgtrue: "http://127.0.0.1:3000/wechat/Wechat_selected.png"
       },
       MailList: {
         title: "通讯录",
-        imgfalse: "http://172.242.19.42:3000/wechat/MailList.png",
-        imgtrue: "http://172.242.19.42:3000/wechat/MailList_selected.png"
+        imgfalse: "http://127.0.0.1:3000/wechat/MailList.png",
+        imgtrue: "http://127.0.0.1:3000/wechat/MailList_selected.png"
       },
       find: {
         title: "发现",
-        imgfalse: "http://172.242.19.42:3000/wechat/find.png",
-        imgtrue: "http://172.242.19.42:3000/wechat/find_selected.png"
+        imgfalse: "http://127.0.0.1:3000/wechat/find.png",
+        imgtrue: "http://127.0.0.1:3000/wechat/find_selected.png"
       },
       My: {
         title: "我",
-        imgfalse: "http://172.242.19.42:3000/wechat/My.png",
-        imgtrue: "http://172.242.19.42:3000/wechat/My_selected.png"
+        imgfalse: "http://127.0.0.1:3000/wechat/My.png",
+        imgtrue: "http://127.0.0.1:3000/wechat/My_selected.png"
       },
       list: [],
       lists: [],

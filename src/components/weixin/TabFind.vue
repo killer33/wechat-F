@@ -2,27 +2,27 @@
   <div>
     <div class="tabfind-header">
       <div @click="open(1)">
-        <img src="http://172.242.19.42:3000/wechat/tabfind1.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/tabfind1.png" alt>
         <span>朋友圈</span>
       </div>
       <div @click="open(2)">
-        <img src="http://172.242.19.42:3000/wechat/tabfind2.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/tabfind2.png" alt>
         <span>扫一扫</span>
       </div>
       <div @click="open(3)">
-        <img src="http://172.242.19.42:3000/wechat/tabfind3.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/tabfind3.png" alt>
         <span>摇一摇</span>
       </div>
       <div @click="open(4)">
-        <img src="http://172.242.19.42:3000/wechat/tabfind4.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/tabfind4.png" alt>
         <span>游戏</span>
       </div>
       <div @click="open(5)">
-        <img src="http://172.242.19.42:3000/wechat/tabfind5.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/tabfind5.png" alt>
         <span>购物</span>
       </div>
       <div @click="open(6)">
-        <img src="http://172.242.19.42:3000/wechat/tabfind6.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/tabfind6.png" alt>
         <span>小程序</span>
       </div>
     </div>
@@ -114,10 +114,6 @@ export default {
     pengyouquan() {
       this.axios.get("pengyouquan").then(result => {
         var result = result.data.data;
-        for (var p of result.arr) {
-          p[0].isfabulous = "false";
-          p[0].imgfalse = "http://172.242.19.42:3000/wechat/Circledianzan.png";
-        }
         this.arr = result.arr;
         var myresult = result.myresult[0];
         var circles = this.circles;
@@ -127,6 +123,7 @@ export default {
           circles.nameImg = myresult.wx_myfriendship_img;
         if (myresult.wx_myfriendship_name !== "")
           circles.name = myresult.wx_myfriendship_name;
+        console.log(this.arr);
       });
     }
   },

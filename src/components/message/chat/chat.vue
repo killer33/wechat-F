@@ -2,12 +2,12 @@
   <div class="chatroom">
     <div class="back">
       <span class="leftback">
-        <img src="http://172.242.19.42:3000/wechat/ic_back.png" alt @click="clickroom()">
+        <img src="http://127.0.0.1:3000/wechat/ic_back.png" alt @click="clickroom()">
         <p>{{uname}}</p>
       </span>
 
       <span class="rightuser" @click="cUser(lid,uname)">
-        <img src="http://172.242.19.42:3000/wechat/backMyilList.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/backMyilList.png" alt>
       </span>
     </div>
     <div class="content">
@@ -18,11 +18,11 @@
         <div class="content-body">
           <ul v-for="(item,index) in Content" :key="index">
             <li class="ask" :id="index" v-show="item.askContent">
-              <img :src="item.replyImg" alt>
+              <img :src="item.askImg" alt>
               <p>{{item.askContent}}</p>
             </li>
             <li class="reply" v-show="item.replyContent">
-              <img :src="img" alt>
+              <img :src="item.replyImg" alt>
               <p>{{item.replyContent}}</p>
             </li>
           </ul>
@@ -48,17 +48,17 @@ export default {
       chatContent: "",
       Content: [],
       display: "display:none",
-      // randomReply: [
-      //   "你好!",
-      //   "好的",
-      //   "OK",
-      //   "没问题",
-      //   "就这样",
-      //   "再见",
-      //   "早上好",
-      //   "晚上好",
-      //   "中午好"
-      // ],
+      randomReply: [
+        "你好!",
+        "好的",
+        "OK",
+        "没问题",
+        "就这样",
+        "再见",
+        "早上好",
+        "晚上好",
+        "中午好"
+      ],
       neirong1: "",
       chatUser: false,
       // details: [],
@@ -73,17 +73,14 @@ export default {
           askContent: this.chatContent
         }),
           this.chatContent = "";
-        // setTimeout(() => {
-        //   this.Content.push({
-        //     replyImg: "a_7.png",
-        //     replyContent: this.randomReply[Math.floor(Math.random() * 9)]
-        //     //自动回复代码this.randomReply[Math.floor(Math.random() * 19)]
-        //   });
-        // }, 1000);
+        setTimeout(() => {
+          this.Content.push({
+            replyImg: "a_7.png",
+            replyContent: this.randomReply[Math.floor(Math.random() * 9)]
+            //自动回复代码this.randomReply[Math.floor(Math.random() * 19)]
+          });
+        }, 1000);
       }
-    },
-    clear() {
-      // this.Content = [];
     },
     scroll() {
       var now = new Date();

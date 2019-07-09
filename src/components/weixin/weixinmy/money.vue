@@ -3,15 +3,15 @@
     <!-- 钱包列表 -->
     <div class="money-list">
       <div class="sfk" @click="test()">
-        <img src="http://172.242.19.42:3000/wechat/money1.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/money1.png" alt>
         <span>收付款</span>
       </div>
       <div class="lq" @click="test()">
-        <img src="http://172.242.19.42:3000/wechat/money2.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/money2.png" alt>
         <span>零钱</span>
       </div>
       <div class="yhk" @click="test()">
-        <img src="http://172.242.19.42:3000/wechat/money3.png" alt>
+        <img src="http://127.0.0.1:3000/wechat/money3.png" alt>
         <span>银行卡</span>
       </div>
     </div>
@@ -98,10 +98,6 @@ export default {
   color: #fff;
 }
 /* 腾讯服务 第三方服务标题 */
-.content-body{
-  padding: 0;
-  overflow: scroll;
-}
 .content-body h2 {
   width: 100%;
   height: 56px;

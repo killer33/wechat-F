@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="backheader">
-      <img src="http://172.242.19.42:3000/wechat/ic_back.png" alt @click="back">
+      <img src="http://127.0.0.1:3000/wechat/ic_back.png" alt @click="back">
       <span>{{title}}</span>
     </div>
   </div>

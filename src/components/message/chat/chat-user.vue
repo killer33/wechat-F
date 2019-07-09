@@ -2,7 +2,7 @@
   <div class="chat-user">
     <div class="back">
       <span class="leftback">
-        <img src="http://172.242.19.42:3000/wechat/ic_back.png" alt @click="cUser()">
+        <img src="http://127.0.0.1:3000/wechat/ic_back.png" alt @click="cUser()">
         <p>聊天信息</p>
       </span>
     </div>
