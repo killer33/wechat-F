@@ -11,23 +11,23 @@
     </div>
     <mt-popup v-model="popupVisible" position="right" class="header-popup">
       <div>
-        <img src="http://127.0.0.1:3000/wechat/ic_add1.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_add1.png" alt>
         <span>发起群聊</span>
       </div>
       <div @click="openadd(),add()" >
-        <img src="http://127.0.0.1:3000/wechat/ic_add2.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_add2.png" alt>
         <span>添加朋友</span>
       </div>
       <div>
-        <img src="http://127.0.0.1:3000/wechat/ic_add3.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_add3.png" alt>
         <span>扫一扫</span>
       </div>
       <div>
-        <img src="http://127.0.0.1:3000/wechat/ic_add4.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_add4.png" alt>
         <span>收付款</span>
       </div>
       <div>
-        <img src="http://127.0.0.1:3000/wechat/ic_add5.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_add5.png" alt>
         <span>帮助与反馈</span>
       </div>
     </mt-popup>

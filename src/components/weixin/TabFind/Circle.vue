@@ -44,7 +44,7 @@ import { setTimeout } from "timers";
 export default {
   data() {
     return {
-      img: "http://127.0.0.1:3000/wechat/Circledianzan.png",
+      img: "http://zidan.applinzi.com/wechat/Circledianzan.png",
       Fabulous: 45,
       i: 0
     };
@@ -68,17 +68,17 @@ export default {
             p[0].wx_release_content_fabulous++;
             p[0].isfabulous = "true";
             p[0].imgfalse =
-              "http://127.0.0.1:3000/wechat/Circledianzan5.png";
+              "http://zidan.applinzi.com/wechat/Circledianzan5.png";
           } else {
             p[0].imgfalse =
-              "http://127.0.0.1:3000/wechat/Circledianzan.png";
+              "http://zidan.applinzi.com/wechat/Circledianzan.png";
             p[0].wx_release_content_fabulous--;
             p[0].isfabulous = "false";
           }
         }
       }
       return;
-      var str = ["http://127.0.0.1:3000/wechat/Circledianzan.png"];
+      var str = ["http://zidan.applinzi.com/wechat/Circledianzan.png"];
       var i = 0;
       if (this.i == i) {
         this.img = str[1];

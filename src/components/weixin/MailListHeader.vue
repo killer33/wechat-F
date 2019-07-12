@@ -5,25 +5,25 @@
     <div>
       <MyilListHeaders
         title="新的朋友"
-        :image="`http://127.0.0.1:3000/wechat/MyILlist/myillistheader1.png`"
+        :image="`http://zidan.applinzi.com/wechat/MyILlist/myillistheader1.png`"
         :openadd="openadd"
       ></MyilListHeaders>
       <div>
         <MyilListHeaders
           title="群聊"
-          :image="`http://127.0.0.1:3000/wechat/MyILlist/myillistheader2.png`"
+          :image="`http://zidan.applinzi.com/wechat/MyILlist/myillistheader2.png`"
         ></MyilListHeaders>
       </div>
       <div>
         <MyilListHeaders
           title="标签"
-          :image="`http://127.0.0.1:3000/wechat/MyILlist/myillistheader3.png`"
+          :image="`http://zidan.applinzi.com/wechat/MyILlist/myillistheader3.png`"
         ></MyilListHeaders>
       </div>
       <div>
         <MyilListHeaders
           title="公众号"
-          :image="`http://127.0.0.1:3000/wechat/MyILlist/myillistheader4.png`"
+          :image="`http://zidan.applinzi.com/wechat/MyILlist/myillistheader4.png`"
         ></MyilListHeaders>
       </div>
     </div>

@@ -5,7 +5,17 @@
 </template>
 
 <style>
-.mui-bar-tab .mui-tab-item-tao.mui-active {
+body{
+  background-color: #efeff4;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+input{
+  padding: 6px;
+}
+/* .mui-bar-tab .mui-tab-item-tao.mui-active {
   color: #007aff;
 }
 .mui-bar-tab .mui-tab-item-tao {
@@ -32,5 +42,5 @@
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
-}
+} */
 </style>

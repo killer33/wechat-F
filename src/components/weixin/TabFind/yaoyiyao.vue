@@ -1,7 +1,7 @@
 <template>
   <div class="page-div">
     <div class="page-div2">
-      <img class="page-img" id="img" src="http://127.0.0.1:3000/wechat/TabFind/yaoyiyao.png" alt>
+      <img class="page-img" id="img" src="http://zidan.applinzi.com/wechat/TabFind/yaoyiyao.png" alt>
     </div>
   </div>
 </template>

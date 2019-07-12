@@ -9,32 +9,32 @@
         </div>
       </div>
       <div class="right-img">
-        <img src="http://127.0.0.1:3000/wechat/ic_my1.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my1.png" alt>
       </div>
     </div>
     <div class="info-list">
       <div @click="open(2)">
-        <img src="http://127.0.0.1:3000/wechat/ic_my1.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my1.png" alt>
         <span>钱包</span>
       </div>
       <div @click="open(3)">
-        <img src="http://127.0.0.1:3000/wechat/ic_my2.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my2.png" alt>
         <span>收藏</span>
       </div>
       <div @click="open(4)">
-        <img src="http://127.0.0.1:3000/wechat/ic_my3.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my3.png" alt>
         <span>相册</span>
       </div>
       <div @click="open(5)">
-        <img src="http://127.0.0.1:3000/wechat/ic_my4.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my4.png" alt>
         <span>卡包</span>
       </div>
       <div @click="open(6)">
-        <img src="http://127.0.0.1:3000/wechat/ic_my5.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my5.png" alt>
         <span>表情</span>
       </div>
       <div @click="open(7)">
-        <img src="http://127.0.0.1:3000/wechat/ic_my6.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/ic_my6.png" alt>
         <span>设置</span>
       </div>
     </div>
@@ -97,11 +97,11 @@ export default {
       ],
        myInfo: {
         // 个人相册封面
-        Bgimg: "http://127.0.0.1:3000/wechat/circlebg.png",
+        Bgimg: "http://zidan.applinzi.com/wechat/circlebg.png",
         // 姓名
          name: "Lisi",
         //头像
-         nameImg: "http://127.0.0.1:3000/wechat/tabfind4.png",
+         nameImg: "http://zidan.applinzi.com/wechat/tabfind4.png",
       },
       // 个人基本信息
       pro:{

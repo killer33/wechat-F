@@ -2,12 +2,12 @@
   <div class="chatroom">
     <div class="back">
       <span class="leftback">
-        <img src="http://127.0.0.1:3000/wechat/ic_back.png" alt @click="clickroom()">
+        <img src="http://zidan.applinzi.com/wechat/ic_back.png" alt @click="clickroom()">
         <p>{{uname}}</p>
       </span>
 
       <span class="rightuser" @click="cUser(lid,uname)">
-        <img src="http://127.0.0.1:3000/wechat/backMyilList.png" alt>
+        <img src="http://zidan.applinzi.com/wechat/backMyilList.png" alt>
       </span>
     </div>
     <div class="content">
@@ -53,11 +53,22 @@ export default {
         "好的",
         "OK",
         "没问题",
-        "就这样",
+        "别这样",
         "再见",
         "早上好",
         "晚上好",
-        "中午好"
+        "中午好",
+        "你刚才说什么，我没看清楚，请再说一遍!",
+        "为什么？为什么我在线，你就不在线，你在线，我就不在线呢？",
+        "您所呼叫的用户尚在厕所中，稍后请拿厕纸给他！",
+        "香蕉，你的大西瓜，再叫我咬你！咔咔咔咔咔咔…",
+        "广告之后，马上回来！",
+        "唉呀——你可真调皮！你看，我话还没说完你又来了！",
+        "你发的什么啊？我看着怎么是乱码！",
+        "真的要跟我聊天?想好了?不后悔了?真的不后悔了?",
+        "走开一下，如果3分钟之内还没回请不要发飙，因为我正在对着设相头摆POSE！",
+        "对不起，由于服务器的原因，您刚才发的信息丢失，请重发一面。",
+        "她说她在游戏，有事请大声的叫她，大声点，再大声点。"
       ],
       neirong1: "",
       chatUser: false,
@@ -76,8 +87,7 @@ export default {
         setTimeout(() => {
           this.Content.push({
             replyImg: "a_7.png",
-            replyContent: this.randomReply[Math.floor(Math.random() * 9)]
-            //自动回复代码this.randomReply[Math.floor(Math.random() * 19)]
+            replyContent: this.randomReply[Math.floor(Math.random() * 20)]
           });
         }, 1000);
       }

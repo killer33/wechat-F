@@ -33,9 +33,9 @@
         <div class="display-div album">
           <span class="font-w">相册</span>
           <div>
-            <img src="http://127.0.0.1:3000/wechat/tabfind6.png">
-            <img src="http://127.0.0.1:3000/wechat/tabfind6.png">
-            <img src="http://127.0.0.1:3000/wechat/tabfind6.png">
+            <img src="http://zidan.applinzi.com/wechat/tabfind6.png">
+            <img src="http://zidan.applinzi.com/wechat/tabfind6.png">
+            <img src="http://zidan.applinzi.com/wechat/tabfind6.png">
           </div>
         </div>
         <div class="More">
